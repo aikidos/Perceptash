@@ -1,0 +1,190 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Perceptash</name>
+    </assembly>
+    <members>
+        <member name="T:Perceptash.Computers.IImageHashComputer`1">
+            <summary>
+            Интерфейс, используемый для описания реализации метода расчета хэш-суммы.
+            </summary>
+            <typeparam name="THash">Тип значения хэш-суммы.</typeparam>
+        </member>
+        <member name="M:Perceptash.Computers.IImageHashComputer`1.ComputeAsync(System.IO.Stream,Perceptash.Transformers.IImageTransformer)">
+            <summary>
+            Возвращает хэш-сумму изображения.
+            </summary>
+            <param name="stream">Поток, который относится к изображению.</param>
+            <param name="transformer">Реализация методов преобразования изображения.</param>
+        </member>
+        <member name="T:Perceptash.Computers.ImageAverageHashComputer">
+            <summary>
+            Реализация метода расчета хэш-суммы по алгоритму среднего хэша.
+            </summary>
+        </member>
+        <member name="M:Perceptash.Computers.ImageAverageHashComputer.ComputeAsync(System.IO.Stream,Perceptash.Transformers.IImageTransformer)">
+            <inheritdoc />
+        </member>
+        <member name="T:Perceptash.Computers.ImageDifferenceHashComputer">
+            <summary>
+            Реализация метода расчета хэш-суммы.
+            Описание алгоритма: http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html
+            </summary>
+        </member>
+        <member name="M:Perceptash.Computers.ImageDifferenceHashComputer.ComputeAsync(System.IO.Stream,Perceptash.Transformers.IImageTransformer)">
+            <inheritdoc />
+        </member>
+        <member name="T:Perceptash.ImageHasherExtensions">
+            <summary>
+            Вспомогательный класс для работы с реализациями <see cref="T:Perceptash.IImageHasher"/>.
+            </summary>
+        </member>
+        <member name="M:Perceptash.ImageHasherExtensions.CalculateAsync``1(Perceptash.IImageHasher,System.String,Perceptash.Computers.IImageHashComputer{``0})">
+            <summary>
+            Возвращает хэш-сумму файла изображения.
+            </summary>
+            <typeparam name="THash">Тип значения хэш-суммы.</typeparam>
+            <param name="hasher">Реализация <see cref="T:Perceptash.IImageHasher"/>.</param>
+            <param name="filePath">Полный путь до файла изображения.</param>
+            <param name="computer">Реализация метода расчета хэш-суммы.</param>
+        </member>
+        <member name="T:Perceptash.HammingWeight">
+            <summary>
+            https://en.wikipedia.org/wiki/Hamming_weight
+            </summary>
+        </member>
+        <member name="T:Perceptash.IImageHashComparable`1">
+            <summary>
+            Интерфейс, используемый для описания реализации сравнения хэш-сумм.
+            </summary>
+            <typeparam name="THash">Тип значения хэш-суммы.</typeparam>
+        </member>
+        <member name="M:Perceptash.IImageHashComparable`1.Similarity(`0)">
+            <summary>
+            Возвращает показатель различия двух изображений исходя из хэш-суммы.
+            Если 1.0, то изображения полностью идентичны, в то время как 0 - полностью различаются.
+            </summary>
+            <param name="otherHash">Хэш-сумма, которая будет использована для сравнения.</param>
+        </member>
+        <member name="T:Perceptash.ImageAverageHash">
+            <summary>
+            Хэш-сумма, рассчитанная по алгоритму среднего хэша.
+            </summary>
+        </member>
+        <member name="P:Perceptash.ImageAverageHash.InternalValue">
+            <summary>
+            Хэш-сумма.
+            </summary>
+        </member>
+        <member name="M:Perceptash.ImageAverageHash.#ctor(System.UInt64)">
+            <summary>
+            Конструктор <see cref="T:Perceptash.ImageAverageHash"/>.
+            </summary>
+            <param name="value">Хэш-сумма.</param>
+        </member>
+        <member name="M:Perceptash.ImageAverageHash.Similarity(Perceptash.ImageAverageHash)">
+            <inheritdoc />
+        </member>
+        <member name="T:Perceptash.ImageDifferenceHash">
+            <summary>
+            Хэш-сумма, рассчитанная по алгоритму http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html
+            </summary>
+        </member>
+        <member name="P:Perceptash.ImageDifferenceHash.InternalValue">
+            <summary>
+            Хэш-сумма.
+            </summary>
+        </member>
+        <member name="M:Perceptash.ImageDifferenceHash.#ctor(System.UInt64)">
+            <summary>
+            Конструктор <see cref="T:Perceptash.ImageDifferenceHash"/>.
+            </summary>
+            <param name="value">Хэш-сумма.</param>
+        </member>
+        <member name="M:Perceptash.ImageDifferenceHash.Similarity(Perceptash.ImageDifferenceHash)">
+            <inheritdoc />
+        </member>
+        <member name="T:Perceptash.IImageHasher">
+            <summary>
+            Интерфейс, используемый для описания реализации метода расчета хэш-суммы.
+            </summary>
+        </member>
+        <member name="P:Perceptash.IImageHasher.Transformer">
+            <summary>
+            Реализация методов преобразования изображения.
+            </summary>
+        </member>
+        <member name="M:Perceptash.IImageHasher.CalculateAsync``1(System.IO.Stream,Perceptash.Computers.IImageHashComputer{``0})">
+            <summary>
+            Возвращает хэш-сумму изображения.
+            </summary>
+            <typeparam name="THash">Тип значения хэш-суммы.</typeparam>
+            <param name="stream">Поток, который относится к изображению.</param>
+            <param name="computer">Реализация метода расчета хэш-суммы.</param>
+        </member>
+        <member name="T:Perceptash.ImageHasher">
+            <summary>
+            Реализация метода расчета хэш-суммы.
+            </summary>
+        </member>
+        <member name="P:Perceptash.ImageHasher.Transformer">
+            <inheritdoc />
+        </member>
+        <member name="M:Perceptash.ImageHasher.#ctor(Perceptash.Transformers.IImageTransformer)">
+            <summary>
+            Конструктор <see cref="T:Perceptash.ImageHasher"/>.
+            </summary>
+            <param name="transformer">Реализация методов преобразования изображения.</param>
+        </member>
+        <member name="M:Perceptash.ImageHasher.CalculateAsync``1(System.IO.Stream,Perceptash.Computers.IImageHashComputer{``0})">
+            <inheritdoc />
+        </member>
+        <member name="T:Perceptash.KnownImageHashes">
+            <summary>
+            Содержит статические экземпляры реализаций <see cref="T:Perceptash.Computers.IImageHashComputer`1"/> для переиспользования.
+            </summary>
+        </member>
+        <member name="P:Perceptash.KnownImageHashes.Difference">
+            <summary>
+            Реализация расчета хэш-суммы.
+            Описание алгоритма: http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html
+            </summary>
+        </member>
+        <member name="P:Perceptash.KnownImageHashes.Average">
+            <summary>
+            Реализация расчета хэш-суммы по алгоритму среднего хэша.
+            </summary>
+        </member>
+        <member name="T:Perceptash.KnownImageTransformers">
+            <summary>
+            Содержит статические экземпляры реализаций <see cref="T:Perceptash.Transformers.IImageTransformer"/> для переиспользования.
+            </summary>
+        </member>
+        <member name="P:Perceptash.KnownImageTransformers.SixLaborsImageSharp">
+            <summary>
+            Реализация методов преобразования изображений на основе библиотеки https://github.com/SixLabors/ImageSharp
+            </summary>
+        </member>
+        <member name="T:Perceptash.Transformers.IImageTransformer">
+            <summary>
+            Интерфейс, используемый для описания реализаций методов преобразования изображений.
+            </summary>
+        </member>
+        <member name="M:Perceptash.Transformers.IImageTransformer.ConvertToGreyscaleAndResizeAsync(System.IO.Stream,System.Int32,System.Int32)">
+            <summary>
+            Преобразовывает изображение в черно-белое, изменяет его размер и возвращает результирующий массив байт.
+            </summary>
+            <param name="stream">Поток, который относится к изображению.</param>
+            <param name="width">Новая ширина изображения.</param>
+            <param name="height">Новая высота изображения.</param>
+        </member>
+        <member name="T:Perceptash.Transformers.ImageSixLaborsTransformer">
+            <summary>
+            Реализация методов преобразования изображений на основе библиотеки https://github.com/SixLabors/ImageSharp
+            </summary>
+        </member>
+        <member name="M:Perceptash.Transformers.ImageSixLaborsTransformer.ConvertToGreyscaleAndResizeAsync(System.IO.Stream,System.Int32,System.Int32)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>
