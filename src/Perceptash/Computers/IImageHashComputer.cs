@@ -9,6 +9,7 @@ namespace Perceptash.Computers
     /// </summary>
     /// <typeparam name="THash">Тип значения хэш-суммы.</typeparam>
     public interface IImageHashComputer<THash>
+        where THash : struct, IImageHashComparable<THash>
     {
         /// <summary>
         /// Возвращает хэш-сумму изображения.

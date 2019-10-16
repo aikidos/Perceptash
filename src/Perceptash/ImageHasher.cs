@@ -24,7 +24,8 @@ namespace Perceptash
         }
 
         /// <inheritdoc />
-        public async Task<THashValue> CalculateAsync<THashValue>(Stream stream, IImageHashComputer<THashValue> computer) 
+        public async Task<THash> CalculateAsync<THash>(Stream stream, IImageHashComputer<THash> computer)
+            where THash : struct, IImageHashComparable<THash>
         {
             if (stream == null) throw new ArgumentNullException(nameof(stream));
             if (computer == null) throw new ArgumentNullException(nameof(computer));

@@ -5,6 +5,7 @@
     /// </summary>
     /// <typeparam name="THash">Тип значения хэш-суммы.</typeparam>
     public interface IImageHashComparable<THash>
+        where THash : struct, IImageHashComparable<THash>
     {
         /// <summary>
         /// Возвращает показатель различия двух изображений исходя из хэш-суммы.

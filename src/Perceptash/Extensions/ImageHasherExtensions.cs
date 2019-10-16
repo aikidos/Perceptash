@@ -18,6 +18,7 @@ namespace Perceptash
         /// <param name="filePath">Полный путь до файла изображения.</param>
         /// <param name="computer">Реализация метода расчета хэш-суммы.</param>
         public static async Task<THash> CalculateAsync<THash>(this IImageHasher hasher, string filePath, IImageHashComputer<THash> computer)
+            where THash : struct, IImageHashComparable<THash>
         {
             if (hasher == null) throw new ArgumentNullException(nameof(hasher));
             if (computer == null) throw new ArgumentNullException(nameof(computer));

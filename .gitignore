@@ -5,3 +5,4 @@ tests/Perceptash.Tests/bin
 tests/Perceptash.Tests/obj
 src/Perceptash/bin
 src/Perceptash/obj
+.idea

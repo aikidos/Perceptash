@@ -21,6 +21,7 @@ namespace Perceptash
         /// <typeparam name="THash">Тип значения хэш-суммы.</typeparam>
         /// <param name="stream">Поток, который относится к изображению.</param>
         /// <param name="computer">Реализация метода расчета хэш-суммы.</param>
-        Task<THash> CalculateAsync<THash>(Stream stream, IImageHashComputer<THash> computer);
+        Task<THash> CalculateAsync<THash>(Stream stream, IImageHashComputer<THash> computer)
+            where THash : struct, IImageHashComparable<THash>;
     }
 }
