@@ -1,0 +1,19 @@
+image: mcr.microsoft.com/dotnet/core/sdk:3.0
+
+variables:
+  TESTS_DIR: 'tests/Perceptash.Tests'
+
+stages:
+  - build
+  - test
+
+build:
+  stage: build
+  script:
+    - "dotnet build"
+    
+test:
+  stage: test
+  script:
+    - "cd $TESTS_DIR"
+    - "dotnet test"
