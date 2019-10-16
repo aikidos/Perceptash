@@ -1,5 +1,5 @@
 variables:
-  TESTS_DIR: 'tests\Perceptash.Tests'
+  TESTS_DIR: '/tests/Perceptash.Tests'
 
 stages:
   - test
