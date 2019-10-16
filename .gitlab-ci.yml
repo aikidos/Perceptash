@@ -1,3 +1,5 @@
+image: microsoft/dotnet:latest
+
 variables:
   TESTS_DIR: 'tests/Perceptash.Tests'
 
