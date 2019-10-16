@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Perceptash.Transformers;
 
@@ -12,12 +13,13 @@ namespace Perceptash.Computers
     public sealed class ImageAverageHashComputer : IImageHashComputer<ImageAverageHash>
     {
         /// <inheritdoc />
-        public async Task<ImageAverageHash> ComputeAsync(Stream stream, IImageTransformer transformer)
+        public async Task<ImageAverageHash> ComputeAsync(Stream stream, IImageTransformer transformer, 
+            CancellationToken cancellationToken = default)
         {
             if (stream == null) throw new ArgumentNullException(nameof(stream));
             if (transformer == null) throw new ArgumentNullException(nameof(transformer));
 
-            byte[] pixels = await transformer.ConvertToGreyscaleAndResizeAsync(stream, 8, 8);
+            byte[] pixels = await transformer.ConvertToGreyscaleAndResizeAsync(stream, 8, 8, cancellationToken);
 
             int total = pixels.Sum(pixel => pixel);
             int average = total / 64;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using Perceptash.Transformers;
 
@@ -12,12 +13,13 @@ namespace Perceptash.Computers
     public sealed class ImageDifferenceHashComputer : IImageHashComputer<ImageDifferenceHash>
     {
         /// <inheritdoc />
-        public async Task<ImageDifferenceHash> ComputeAsync(Stream stream, IImageTransformer transformer)
+        public async Task<ImageDifferenceHash> ComputeAsync(Stream stream, IImageTransformer transformer, 
+            CancellationToken cancellationToken = default)
         {
             if (stream == null) throw new ArgumentNullException(nameof(stream));
             if (transformer == null) throw new ArgumentNullException(nameof(transformer));
 
-            byte[] pixels = await transformer.ConvertToGreyscaleAndResizeAsync(stream, 9, 8);
+            byte[] pixels = await transformer.ConvertToGreyscaleAndResizeAsync(stream, 9, 8, cancellationToken);
 
             ulong hash = 0UL;
             int pos = 0;

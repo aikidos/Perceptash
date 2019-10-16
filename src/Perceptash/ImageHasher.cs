@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using Perceptash.Computers;
 using Perceptash.Transformers;
@@ -24,13 +25,14 @@ namespace Perceptash
         }
 
         /// <inheritdoc />
-        public async Task<THash> CalculateAsync<THash>(Stream stream, IImageHashComputer<THash> computer)
+        public async Task<THash> CalculateAsync<THash>(Stream stream, IImageHashComputer<THash> computer, 
+            CancellationToken cancellationToken = default)
             where THash : struct, IImageHashComparable<THash>
         {
             if (stream == null) throw new ArgumentNullException(nameof(stream));
             if (computer == null) throw new ArgumentNullException(nameof(computer));
 
-            return await computer.ComputeAsync(stream, Transformer);
+            return await computer.ComputeAsync(stream, Transformer, cancellationToken);
         }
     }
 }

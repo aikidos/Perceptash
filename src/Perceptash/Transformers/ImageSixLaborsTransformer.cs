@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Advanced;
@@ -14,7 +15,8 @@ namespace Perceptash.Transformers
     public sealed class ImageSixLaborsTransformer : IImageTransformer
     {
         /// <inheritdoc />
-        public Task<byte[]> ConvertToGreyscaleAndResizeAsync(Stream stream, int width, int height)
+        public Task<byte[]> ConvertToGreyscaleAndResizeAsync(Stream stream, int width, int height, 
+            CancellationToken cancellationToken = default)
         {
             if (width <= 0) throw new ArgumentOutOfRangeException(nameof(width));
             if (height <= 0) throw new ArgumentOutOfRangeException(nameof(height));
@@ -38,7 +40,7 @@ namespace Perceptash.Transformers
                 }
 
                 return pixels;
-            });
+            }, cancellationToken);
         }
     }
 }
