@@ -1,0 +1,11 @@
+variables:
+  TESTS_DIR: 'tests\Perceptash.Tests'
+
+stages:
+  - test
+
+test:
+  stage: test
+  script:
+    - "cd $TESTS_DIR"
+    - "dotnet test"
