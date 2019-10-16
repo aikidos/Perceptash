@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Advanced;
@@ -29,10 +28,16 @@ namespace Perceptash.Transformers
                     context.Resize(width, height);
                 });
 
-                return image.GetPixelSpan()
-                    .ToArray()
-                    .Select(gray8 => gray8.PackedValue)
-                    .ToArray();
+                var span = image.GetPixelSpan();
+                
+                var pixels = new byte[span.Length];
+
+                for (int i = 0; i < span.Length; i++)
+                {
+                    pixels[i] = span[i].PackedValue;
+                }
+
+                return pixels;
             });
         }
     }
