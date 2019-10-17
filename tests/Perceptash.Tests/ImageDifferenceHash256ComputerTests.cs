@@ -15,7 +15,7 @@ namespace Perceptash.Tests
             IImageHashComputer<ImageDifferenceHash256> computer = new ImageDifferenceHash256Computer();
             IImageTransformer transformer = new ImageSixLaborsTransformer();
 
-            await using Stream normal = File.OpenRead("test_cat.jpg");
+            await using Stream normal = File.OpenRead("cat.jpg");
 
             // Act
             ImageDifferenceHash256 hash = await computer.ComputeAsync(normal, transformer);

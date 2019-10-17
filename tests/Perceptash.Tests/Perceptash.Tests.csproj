@@ -7,17 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="test_cat.jpg" />
+    <None Remove="cat.jpg" />
+    <None Remove="cat_rotated_90_degrees.jpg" />
     <None Remove="test_cat_0.jpg" />
     <None Remove="test_cat_0_rotate.jpg" />
-    <None Remove="test_cat_rotate.jpg" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="test_cat.jpg">
+    <Content Include="cat.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="test_cat_rotate.jpg">
+    <Content Include="cat_rotated_90_degrees.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

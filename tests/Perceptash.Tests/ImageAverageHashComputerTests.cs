@@ -15,7 +15,7 @@ namespace Perceptash.Tests
             IImageHashComputer<ImageAverageHash> computer = new ImageAverageHashComputer();
             IImageTransformer transformer = new ImageSixLaborsTransformer();
 
-            await using Stream normal = File.OpenRead("test_cat.jpg");
+            await using Stream normal = File.OpenRead("cat.jpg");
 
             // Act
             ImageAverageHash hash = await computer.ComputeAsync(normal, transformer);
