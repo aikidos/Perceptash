@@ -6,20 +6,20 @@
     <members>
         <member name="T:Perceptash.Computers.IImageHashComputer`1">
             <summary>
-            Интерфейс, используемый для описания реализации метода расчета хэш-суммы.
+            Интерфейс, используемый для описания реализации метода расчета хеш-суммы.
             </summary>
-            <typeparam name="THash">Тип значения хэш-суммы.</typeparam>
+            <typeparam name="THash">Тип значения хеш-суммы.</typeparam>
         </member>
         <member name="M:Perceptash.Computers.IImageHashComputer`1.ComputeAsync(System.IO.Stream,Perceptash.Transformers.IImageTransformer)">
             <summary>
-            Возвращает хэш-сумму изображения.
+            Возвращает хеш-сумму изображения.
             </summary>
             <param name="stream">Поток, который относится к изображению.</param>
             <param name="transformer">Реализация методов преобразования изображения.</param>
         </member>
         <member name="T:Perceptash.Computers.ImageAverageHashComputer">
             <summary>
-            Реализация метода расчета хэш-суммы по алгоритму среднего хэша.
+            Реализация метода расчета хеш-суммы по алгоритму среднего хеша.
             </summary>
         </member>
         <member name="M:Perceptash.Computers.ImageAverageHashComputer.ComputeAsync(System.IO.Stream,Perceptash.Transformers.IImageTransformer)">
@@ -27,7 +27,7 @@
         </member>
         <member name="T:Perceptash.Computers.ImageDifferenceHashComputer">
             <summary>
-            Реализация метода расчета хэш-суммы.
+            Реализация метода расчета хеш-суммы.
             Описание алгоритма: http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html
             </summary>
         </member>
@@ -41,12 +41,12 @@
         </member>
         <member name="M:Perceptash.ImageHasherExtensions.CalculateAsync``1(Perceptash.IImageHasher,System.String,Perceptash.Computers.IImageHashComputer{``0})">
             <summary>
-            Возвращает хэш-сумму файла изображения.
+            Возвращает хеш-сумму файла изображения.
             </summary>
-            <typeparam name="THash">Тип значения хэш-суммы.</typeparam>
+            <typeparam name="THash">Тип значения хеш-суммы.</typeparam>
             <param name="hasher">Реализация <see cref="T:Perceptash.IImageHasher"/>.</param>
             <param name="filePath">Полный путь до файла изображения.</param>
-            <param name="computer">Реализация метода расчета хэш-суммы.</param>
+            <param name="computer">Реализация метода расчета хеш-суммы.</param>
         </member>
         <member name="T:Perceptash.HammingWeight">
             <summary>
@@ -55,58 +55,58 @@
         </member>
         <member name="T:Perceptash.IImageHashComparable`1">
             <summary>
-            Интерфейс, используемый для описания реализации сравнения хэш-сумм.
+            Интерфейс, используемый для описания реализации сравнения хеш-сумм.
             </summary>
-            <typeparam name="THash">Тип значения хэш-суммы.</typeparam>
+            <typeparam name="THash">Тип значения хеш-суммы.</typeparam>
         </member>
         <member name="M:Perceptash.IImageHashComparable`1.Similarity(`0)">
             <summary>
-            Возвращает показатель различия двух изображений исходя из хэш-суммы.
+            Возвращает показатель различия двух изображений исходя из хеш-суммы.
             Если 1.0, то изображения полностью идентичны, в то время как 0 - полностью различаются.
             </summary>
-            <param name="otherHash">Хэш-сумма, которая будет использована для сравнения.</param>
+            <param name="otherHash">Хеш-сумма, которая будет использована для сравнения.</param>
         </member>
         <member name="T:Perceptash.ImageAverageHash">
             <summary>
-            Хэш-сумма, рассчитанная по алгоритму среднего хэша.
+            хеш-сумма, рассчитанная по алгоритму среднего хеша.
             </summary>
         </member>
         <member name="P:Perceptash.ImageAverageHash.InternalValue">
             <summary>
-            Хэш-сумма.
+            хеш-сумма.
             </summary>
         </member>
         <member name="M:Perceptash.ImageAverageHash.#ctor(System.UInt64)">
             <summary>
             Конструктор <see cref="T:Perceptash.ImageAverageHash"/>.
             </summary>
-            <param name="value">Хэш-сумма.</param>
+            <param name="value">Хеш-сумма.</param>
         </member>
         <member name="M:Perceptash.ImageAverageHash.Similarity(Perceptash.ImageAverageHash)">
             <inheritdoc />
         </member>
         <member name="T:Perceptash.ImageDifferenceHash">
             <summary>
-            Хэш-сумма, рассчитанная по алгоритму http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html
+            хеш-сумма, рассчитанная по алгоритму http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html
             </summary>
         </member>
         <member name="P:Perceptash.ImageDifferenceHash.InternalValue">
             <summary>
-            Хэш-сумма.
+            хеш-сумма.
             </summary>
         </member>
         <member name="M:Perceptash.ImageDifferenceHash.#ctor(System.UInt64)">
             <summary>
             Конструктор <see cref="T:Perceptash.ImageDifferenceHash"/>.
             </summary>
-            <param name="value">Хэш-сумма.</param>
+            <param name="value">Хеш-сумма.</param>
         </member>
         <member name="M:Perceptash.ImageDifferenceHash.Similarity(Perceptash.ImageDifferenceHash)">
             <inheritdoc />
         </member>
         <member name="T:Perceptash.IImageHasher">
             <summary>
-            Интерфейс, используемый для описания реализации метода расчета хэш-суммы.
+            Интерфейс, используемый для описания реализации метода расчета хеш-суммы.
             </summary>
         </member>
         <member name="P:Perceptash.IImageHasher.Transformer">
@@ -116,15 +116,15 @@
         </member>
         <member name="M:Perceptash.IImageHasher.CalculateAsync``1(System.IO.Stream,Perceptash.Computers.IImageHashComputer{``0})">
             <summary>
-            Возвращает хэш-сумму изображения.
+            Возвращает хеш-сумму изображения.
             </summary>
-            <typeparam name="THash">Тип значения хэш-суммы.</typeparam>
+            <typeparam name="THash">Тип значения хеш-суммы.</typeparam>
             <param name="stream">Поток, который относится к изображению.</param>
-            <param name="computer">Реализация метода расчета хэш-суммы.</param>
+            <param name="computer">Реализация метода расчета хеш-суммы.</param>
         </member>
         <member name="T:Perceptash.ImageHasher">
             <summary>
-            Реализация метода расчета хэш-суммы.
+            Реализация метода расчета хеш-суммы.
             </summary>
         </member>
         <member name="P:Perceptash.ImageHasher.Transformer">
@@ -146,13 +146,13 @@
         </member>
         <member name="P:Perceptash.KnownImageHashes.Difference">
             <summary>
-            Реализация расчета хэш-суммы.
+            Реализация расчета хеш-суммы.
             Описание алгоритма: http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html
             </summary>
         </member>
         <member name="P:Perceptash.KnownImageHashes.Average">
             <summary>
-            Реализация расчета хэш-суммы по алгоритму среднего хэша.
+            Реализация расчета хеш-суммы по алгоритму среднего хеша.
             </summary>
         </member>
         <member name="T:Perceptash.KnownImageTransformers">

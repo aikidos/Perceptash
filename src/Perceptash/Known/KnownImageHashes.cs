@@ -8,13 +8,19 @@ namespace Perceptash
     public static class KnownImageHashes
     {
         /// <summary>
-        /// Реализация расчета хэш-суммы.
+        /// Реализация расчета 64-битной хеш-суммы.
         /// Описание алгоритма: http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html
         /// </summary>
-        public static IImageHashComputer<ImageDifferenceHash> Difference { get; } = new ImageDifferenceHashComputer();
+        public static IImageHashComputer<ImageDifferenceHash64> Difference64 { get; } = new ImageDifferenceHash64Computer();
 
         /// <summary>
-        /// Реализация расчета хэш-суммы по алгоритму среднего хэша.
+        /// Реализация расчета 256-битной хеш-суммы.
+        /// Описание алгоритма: http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html
+        /// </summary>
+        public static IImageHashComputer<ImageDifferenceHash256> Difference256 { get; } = new ImageDifferenceHash256Computer();
+
+        /// <summary>
+        /// Реализация расчета хеш-суммы по алгоритму среднего хеша.
         /// </summary>
         public static IImageHashComputer<ImageAverageHash> Average { get; } = new ImageAverageHashComputer();
     }

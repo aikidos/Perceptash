@@ -1,9 +1,9 @@
 ﻿namespace Perceptash
 {
     /// <summary>
-    /// Хеш-сумма, рассчитанная по алгоритму среднего хеша.
+    /// 64-битная хеш-сумма, рассчитанная по алгоритму http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html
     /// </summary>
-    public readonly struct ImageAverageHash : IImageHashComparable<ImageAverageHash>
+    public readonly struct ImageDifferenceHash64 : IImageHashComparable<ImageDifferenceHash64>
     {
         /// <summary>
         /// Хеш-сумма.
@@ -11,16 +11,16 @@
         public ulong InternalValue { get; }
 
         /// <summary>
-        /// Конструктор <see cref="ImageAverageHash"/>.
+        /// Конструктор <see cref="ImageDifferenceHash64"/>.
         /// </summary>
         /// <param name="value">Хеш-сумма.</param>
-        public ImageAverageHash(ulong value)
+        public ImageDifferenceHash64(ulong value)
         {
             InternalValue = value;
         }
 
         /// <inheritdoc />
-        public float Similarity(ImageAverageHash otherHash)
+        public float Similarity(ImageDifferenceHash64 otherHash)
         {
             return HammingWeight.CalculateSimilarity(InternalValue, otherHash.InternalValue);
         }

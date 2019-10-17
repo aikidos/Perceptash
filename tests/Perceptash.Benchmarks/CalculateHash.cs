@@ -36,10 +36,16 @@ namespace Perceptash.Benchmarks
             _imageStream.Dispose();
         }
 
-        [Benchmark(Description = "[Perceptash] - KnownImageHashes.Difference")]
-        public async Task<ImageDifferenceHash> Perceptash_Difference()
+        [Benchmark(Description = "[Perceptash] - KnownImageHashes.Difference64")]
+        public async Task<ImageDifferenceHash64> Perceptash_Difference_64()
         {
-            return await _perceptash.CalculateAsync(_imageStream, KnownImageHashes.Difference);
+            return await _perceptash.CalculateAsync(_imageStream, KnownImageHashes.Difference64);
+        }
+
+        [Benchmark(Description = "[Perceptash] - KnownImageHashes.Difference256")]
+        public async Task<ImageDifferenceHash256> Perceptash_Difference_256()
+        {
+            return await _perceptash.CalculateAsync(_imageStream, KnownImageHashes.Difference256);
         }
 
         [Benchmark(Description = "[Perceptash] - KnownImageHashes.Average")]

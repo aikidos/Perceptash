@@ -7,7 +7,7 @@ using Perceptash.Transformers;
 namespace Perceptash
 {
     /// <summary>
-    /// Интерфейс, используемый для описания реализации метода расчета хэш-суммы.
+    /// Интерфейс, используемый для описания реализации метода расчета хеш-суммы.
     /// </summary>
     public interface IImageHasher
     {
@@ -17,11 +17,11 @@ namespace Perceptash
         IImageTransformer Transformer { get; }
 
         /// <summary>
-        /// Возвращает хэш-сумму изображения.
+        /// Возвращает хеш-сумму изображения.
         /// </summary>
-        /// <typeparam name="THash">Тип значения хэш-суммы.</typeparam>
+        /// <typeparam name="THash">Тип значения хеш-суммы.</typeparam>
         /// <param name="stream">Поток, который относится к изображению.</param>
-        /// <param name="computer">Реализация метода расчета хэш-суммы.</param>
+        /// <param name="computer">Реализация метода расчета хеш-суммы.</param>
         /// <param name="cancellationToken">Токен отмены операции.</param>
         Task<THash> CalculateAsync<THash>(Stream stream, IImageHashComputer<THash> computer, CancellationToken cancellationToken = default)
             where THash : struct, IImageHashComparable<THash>;

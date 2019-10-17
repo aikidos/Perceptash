@@ -8,7 +8,7 @@ using Perceptash.Transformers;
 namespace Perceptash
 {
     /// <summary>
-    /// Реализация метода расчета хэш-суммы.
+    /// Реализация метода расчета хеш-суммы.
     /// </summary>
     public sealed class ImageHasher : IImageHasher
     {
