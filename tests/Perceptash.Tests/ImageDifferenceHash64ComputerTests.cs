@@ -6,19 +6,19 @@ using Xunit;
 
 namespace Perceptash.Tests
 {
-    public sealed class ImageDifferenceHashComputerTests
+    public sealed class ImageDifferenceHash64ComputerTests
     {
         [Fact]
         public async Task Compute()
         {
             // Arrange
-            IImageHashComputer<ImageDifferenceHash> computer = new ImageDifferenceHashComputer();
+            IImageHashComputer<ImageDifferenceHash64> computer = new ImageDifferenceHash64Computer();
             IImageTransformer transformer = new ImageSixLaborsTransformer();
 
-            await using Stream normal = File.OpenRead("test_cat.jpg");
+            await using Stream normal = File.OpenRead("cat.jpg");
 
             // Act
-            ImageDifferenceHash hash = await computer.ComputeAsync(normal, transformer);
+            ImageDifferenceHash64 hash = await computer.ComputeAsync(normal, transformer);
 
             // Assert
             Assert.Equal(8000419368315833978UL, hash.InternalValue);

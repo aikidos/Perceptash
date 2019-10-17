@@ -7,13 +7,13 @@ using Perceptash.Transformers;
 namespace Perceptash.Computers
 {
     /// <summary>
-    /// Реализация метода расчета хэш-суммы.
+    /// Реализация метода расчета 64-битной хеш-суммы.
     /// Описание алгоритма: http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html
     /// </summary>
-    public sealed class ImageDifferenceHashComputer : IImageHashComputer<ImageDifferenceHash>
+    public sealed class ImageDifferenceHash64Computer : IImageHashComputer<ImageDifferenceHash64>
     {
         /// <inheritdoc />
-        public async Task<ImageDifferenceHash> ComputeAsync(Stream stream, IImageTransformer transformer, 
+        public async Task<ImageDifferenceHash64> ComputeAsync(Stream stream, IImageTransformer transformer, 
             CancellationToken cancellationToken = default)
         {
             if (stream == null) throw new ArgumentNullException(nameof(stream));
@@ -39,7 +39,7 @@ namespace Perceptash.Computers
                 }
             }
 
-            return new ImageDifferenceHash(hash);
+            return new ImageDifferenceHash64(hash);
         }
     }
 }

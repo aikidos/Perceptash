@@ -11,12 +11,12 @@ namespace Perceptash
     public static class ImageHasherExtensions
     {
         /// <summary>
-        /// Возвращает хэш-сумму файла изображения.
+        /// Возвращает хеш-сумму файла изображения.
         /// </summary>
-        /// <typeparam name="THash">Тип значения хэш-суммы.</typeparam>
+        /// <typeparam name="THash">Тип значения хеш-суммы.</typeparam>
         /// <param name="hasher">Реализация <see cref="IImageHasher"/>.</param>
         /// <param name="filePath">Полный путь до файла изображения.</param>
-        /// <param name="computer">Реализация метода расчета хэш-суммы.</param>
+        /// <param name="computer">Реализация метода расчета хеш-суммы.</param>
         public static async Task<THash> CalculateAsync<THash>(this IImageHasher hasher, string filePath, IImageHashComputer<THash> computer)
             where THash : struct, IImageHashComparable<THash>
         {

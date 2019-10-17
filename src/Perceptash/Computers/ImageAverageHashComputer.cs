@@ -8,7 +8,7 @@ using Perceptash.Transformers;
 namespace Perceptash.Computers
 {
     /// <summary>
-    /// Реализация метода расчета хэш-суммы по алгоритму среднего хэша.
+    /// Реализация метода расчета хеш-суммы по алгоритму среднего хеша.
     /// </summary>
     public sealed class ImageAverageHashComputer : IImageHashComputer<ImageAverageHash>
     {

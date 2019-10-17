@@ -1,4 +1,6 @@
-﻿namespace Perceptash
+﻿using System;
+
+namespace Perceptash
 {
     /// <summary>
     /// https://en.wikipedia.org/wiki/Hamming_weight
@@ -23,6 +25,30 @@
         public static float CalculateSimilarity(ulong hash1, ulong hash2)
         {
             return 1f - Calculate(hash1 ^ hash2) / 64f;
+        }
+
+        public static float CalculateSimilarity(ReadOnlySpan<ulong> hash1, ReadOnlySpan<ulong> hash2)
+        {
+            if (hash1.Length != hash2.Length)
+                throw new ArgumentException("The length of the arrays does not match.", nameof(hash1));
+
+            var hashSize = hash1.Length;
+
+            ulong hash = 0;
+
+            var diff = new ulong[hashSize];
+
+            for (var i = 0; i < hashSize; i++)
+            {
+                diff[i] = hash1[i] ^ hash2[i];
+            }
+
+            for (var i = 0; i < hashSize; i++)
+            {
+                hash += Calculate(diff[i]);
+            }
+
+            return 1.0f - hash / (hashSize * 64.0f);
         }
     }
 }
