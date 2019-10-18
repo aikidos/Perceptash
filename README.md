@@ -15,11 +15,11 @@ IImageTransformer transformer = new ImageSharpTransformer();
 
 IImageHasher hasher = new ImageHasher(transformer);
 
-await using Stream cat = File.OpenRead("cat.jpg");
-await using Stream rotatedCat = File.OpenRead("cat_rotated_90_degrees.jpg");
+using Stream cat = File.OpenRead("cat.jpg");
+using Stream rotatedCat = File.OpenRead("cat_rotated_90_degrees.jpg");
 
-ImageDifferenceHash64 catHash = await hasher.CalculateAsync(cat, KnownImageHashes.Difference64);
-ImageDifferenceHash64 rotatedCatHash = await hasher.CalculateAsync(rotatedCat, KnownImageHashes.Difference64);
+ImageDifferenceHash64 catHash = hasher.Calculate(cat, KnownImageHashes.Difference64);
+ImageDifferenceHash64 rotatedCatHash = hasher.Calculate(rotatedCat, KnownImageHashes.Difference64);
 
 float similarity = catHash.Similarity(rotatedCatHash);
 
@@ -41,22 +41,22 @@ based on https://github.com/dlemstra/Magick.NET
 
 Image for testing: 3000x1971 (5 mb).
 
-|               Categories |                         Method |       Mean |     Error |    StdDev |  Allocated |
-|------------------------- |------------------------------- |-----------:|----------:|----------:|-----------:|
-| Perceptash (ImageSharp)  | KnownImageHashes.Difference64  |   392.4 ms |  3.630 ms |  3.396 ms |      824 B |
-| Perceptash (ImageSharp)  | KnownImageHashes.Difference256 |   388.6 ms |  7.171 ms |  6.708 ms |      824 B |
-| Perceptash (ImageSharp)  | KnownImageHashes.Average       |   384.4 ms |  4.654 ms |  4.354 ms |      824 B |
-|                          |                                |            |           |           |            |
-| Perceptash (Magick.NET)  | KnownImageHashes.Difference64  | 1,666.7 ms | 12.781 ms | 11.955 ms |      816 B |
-| Perceptash (Magick.NET)  | KnownImageHashes.Difference256 | 1,667.9 ms | 11.309 ms | 10.579 ms |      816 B |
-| Perceptash (Magick.NET)  | KnownImageHashes.Average       | 1,673.1 ms | 19.454 ms | 18.197 ms |      816 B |
-|                          |                                |            |           |           |            |
-| DupImageLib (Magick.NET) | CalculateDifferenceHash64      | 1,659.8 ms |  7.016 ms |  6.563 ms |    13360 B |
-| DupImageLib (Magick.NET) | CalculateDifferenceHash256     | 1,660.4 ms | 11.535 ms | 10.789 ms |    13688 B |
-| DupImageLib (Magick.NET) | CalculateAverageHash64         | 1,658.0 ms | 11.087 ms |  9.829 ms |    13472 B |
-|                          |                                |            |           |           |            |
-| Shipwreck.Phash          | ComputeDctHash                 |   676.9 ms |  4.382 ms |  4.099 ms | 10418904 B |
-| Shipwreck.Phash          | ComputeDigest                  |   687.0 ms |  3.849 ms |  3.412 ms | 10403968 B |
+|               Categories |                         Method |       Mean |     Error |    StdDev |   Allocated |
+|------------------------- |------------------------------- |-----------:|----------:|----------:|------------:|
+| Perceptash (ImageSharp)  | KnownImageHashes.Difference64  |   387.2 ms |  2.908 ms |  2.720 ms |    48.25 KB |
+| Perceptash (ImageSharp)  | KnownImageHashes.Difference256 |   389.4 ms |  2.620 ms |  2.451 ms |     40.8 KB |
+| Perceptash (ImageSharp)  | KnownImageHashes.Average       |   390.2 ms |  4.986 ms |  4.664 ms |    49.44 KB |
+|                          |                                |            |           |           |             |
+| Perceptash (Magick.NET)  | KnownImageHashes.Difference64  | 1,669.2 ms | 16.199 ms | 14.360 ms |    13.17 KB |
+| Perceptash (Magick.NET)  | KnownImageHashes.Difference256 | 1,668.3 ms | 10.973 ms | 10.264 ms |    13.55 KB |
+| Perceptash (Magick.NET)  | KnownImageHashes.Average       | 1,667.9 ms | 19.372 ms | 18.121 ms |     13.2 KB |
+|                          |                                |            |           |           |             |
+| DupImageLib (Magick.NET) | CalculateDifferenceHash64      | 1,682.0 ms | 20.820 ms | 19.475 ms |    13.05 KB |
+| DupImageLib (Magick.NET) | CalculateDifferenceHash256     | 1,688.1 ms | 36.941 ms | 39.526 ms |    13.37 KB |
+| DupImageLib (Magick.NET) | CalculateAverageHash64         | 1,671.3 ms | 12.579 ms | 11.766 ms |    13.16 KB |
+|                          |                                |            |           |           |             |
+| Shipwreck.Phash          | ComputeDctHash                 |   696.0 ms |  1.984 ms |  1.759 ms | 10174.71 KB |
+| Shipwreck.Phash          | ComputeDigest                  |   692.0 ms |  4.319 ms |  4.040 ms | 10160.13 KB |
 
 Links to the tested libraries:
 

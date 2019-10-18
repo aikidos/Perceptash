@@ -1,6 +1,4 @@
 ﻿using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
 using Perceptash.Transformers;
 
 namespace Perceptash.Computers
@@ -17,7 +15,6 @@ namespace Perceptash.Computers
         /// </summary>
         /// <param name="stream">Поток, который относится к изображению.</param>
         /// <param name="transformer">Реализация методов преобразования изображения.</param>
-        /// <param name="cancellationToken">Токен отмены операции.</param>
-        Task<THash> ComputeAsync(Stream stream, IImageTransformer transformer, CancellationToken cancellationToken = default);
+        THash Compute(Stream stream, IImageTransformer transformer);
     }
 }
