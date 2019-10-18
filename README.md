@@ -1,16 +1,17 @@
 # Perceptash
 
-Библиотека перцептивного хеширования для обнаружения похожих или дублирующих изображений.
+Library offering several different perceptual hashing algorithms for detecting similar or duplicate images.
 
 # Todo
 
-- [ ] Настроить автоматическую сборку и деплой `nuget`-пакетов.
-- [ ] Перевести всё на английский.
+- [ ] Set up automatic deployment of `nuget`-packages.
+- [ ] Translate everything into English.
 
 # API
 
 ```csharp
-IImageHasher hasher = new ImageHasher();
+IImageTransformer transformer = new ImageSharpTransformer();
+IImageHasher hasher = new ImageHasher(transformer);
 
 await using Stream cat = File.OpenRead("cat.jpg");
 await using Stream rotatedCat = File.OpenRead("cat_rotated_90_degrees.jpg");
@@ -23,27 +24,39 @@ float similarity = catHash.Similarity(rotatedCatHash);
 Console.WriteLine(similarity); // 0.46875
 ```
 
-> **Примечание:**  
-На данный момент, поддерживается только `.NET Core 3.0` и выше.
+> **Note:**  
+At the moment, only `.NET Core 3.0` and higher is supported.
+
+# Available Transformers
+
+**Perceptash.Transformers.ImageSharp**  
+based on https://github.com/SixLabors/ImageSharp  
+
+**Perceptash.Transformers.Magick**  
+based on https://github.com/dlemstra/Magick.NET
 
 # Benchmarks
 
-Для сравнения производительности с другими библиотеками было взято изображение размером 3000x1971 (5 мб).
+Image for testing: 3000x1971 (5 mb).
 
-|                                          Method |       Mean |    Error |   StdDev |     Gen 0 |     Gen 1 |     Gen 2 |  Allocated |
-|------------------------------------------------ |-----------:|---------:|---------:|----------:|----------:|----------:|-----------:|
-|  '[Perceptash] - KnownImageHashes.Difference64' |   390.9 ms | 2.117 ms | 1.876 ms |         - |         - |         - |      824 B |
-| '[Perceptash] - KnownImageHashes.Difference256' |   393.0 ms | 4.515 ms | 4.003 ms |         - |         - |         - |      824 B |
-|       '[Perceptash] - KnownImageHashes.Average' |   390.0 ms | 6.832 ms | 6.391 ms |         - |         - |         - |      824 B |
-|     '[DupImageLib] - CalculateDifferenceHash64' | 1,749.1 ms | 3.718 ms | 2.903 ms |         - |         - |         - |    12472 B |
-|        '[DupImageLib] - CalculateAverageHash64' | 1,746.5 ms | 3.654 ms | 3.239 ms |         - |         - |         - |    12584 B |
-|            '[Shipwreck.Phash] - ComputeDctHash' |   687.6 ms | 2.536 ms | 2.372 ms | 3000.0000 | 1000.0000 | 1000.0000 | 10418904 B |
-|             '[Shipwreck.Phash] - ComputeDigest' |   696.0 ms | 2.638 ms | 2.468 ms | 3000.0000 | 1000.0000 | 1000.0000 | 10403968 B |
+|               Categories |                         Method |       Mean |     Error |    StdDev |  Allocated |
+|------------------------- |------------------------------- |-----------:|----------:|----------:|-----------:|
+| Perceptash (ImageSharp)  | KnownImageHashes.Difference64  |   392.4 ms |  3.630 ms |  3.396 ms |      824 B |
+| Perceptash (ImageSharp)  | KnownImageHashes.Difference256 |   388.6 ms |  7.171 ms |  6.708 ms |      824 B |
+| Perceptash (ImageSharp)  | KnownImageHashes.Average       |   384.4 ms |  4.654 ms |  4.354 ms |      824 B |
+|                          |                                |            |           |           |            |
+| Perceptash (Magick.NET)  | KnownImageHashes.Difference64  | 1,666.7 ms | 12.781 ms | 11.955 ms |      816 B |
+| Perceptash (Magick.NET)  | KnownImageHashes.Difference256 | 1,667.9 ms | 11.309 ms | 10.579 ms |      816 B |
+| Perceptash (Magick.NET)  | KnownImageHashes.Average       | 1,673.1 ms | 19.454 ms | 18.197 ms |      816 B |
+|                          |                                |            |           |           |            |
+| DupImageLib (Magick.NET) | CalculateDifferenceHash64      | 1,659.8 ms |  7.016 ms |  6.563 ms |    13360 B |
+| DupImageLib (Magick.NET) | CalculateDifferenceHash256     | 1,660.4 ms | 11.535 ms | 10.789 ms |    13688 B |
+| DupImageLib (Magick.NET) | CalculateAverageHash64         | 1,658.0 ms | 11.087 ms |  9.829 ms |    13472 B |
+|                          |                                |            |           |           |            |
+| Shipwreck.Phash          | ComputeDctHash                 |   676.9 ms |  4.382 ms |  4.099 ms | 10418904 B |
+| Shipwreck.Phash          | ComputeDigest                  |   687.0 ms |  3.849 ms |  3.412 ms | 10403968 B |
 
-Ссылки на библиотеки, которые указаны в тесте:
+Links to the tested libraries:
 
 * [DupImageLib](https://github.com/Quickshot/DupImageLib)
 * [Shipwreck.Phash](https://github.com/pgrho/phash)
-
-> **Примечание:**  
-Большой прирост производительности, как и уменьшение потребление памяти, в большей степени, обеспечила библиотека для обработки изображений - [SixLabors.ImageSharp](https://github.com/SixLabors/ImageSharp).  
