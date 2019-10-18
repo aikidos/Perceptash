@@ -19,9 +19,9 @@ namespace Perceptash
         /// Конструктор <see cref="ImageHasher"/>.
         /// </summary>
         /// <param name="transformer">Реализация методов преобразования изображения.</param>
-        public ImageHasher(IImageTransformer? transformer = null)
+        public ImageHasher(IImageTransformer transformer)
         {
-            Transformer = transformer ?? KnownImageTransformers.SixLaborsImageSharp;
+            Transformer = transformer ?? throw new ArgumentNullException(nameof(transformer));
         }
 
         /// <inheritdoc />
