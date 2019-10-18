@@ -12,12 +12,13 @@ namespace Perceptash.Transformers
     /// <summary>
     /// Реализация методов преобразования изображений на основе библиотеки https://github.com/SixLabors/ImageSharp
     /// </summary>
-    public sealed class ImageSixLaborsTransformer : IImageTransformer
+    public sealed class ImageSharpTransformer : IImageTransformer
     {
         /// <inheritdoc />
         public Task<byte[]> ConvertToGreyscaleAndResizeAsync(Stream stream, int width, int height, 
             CancellationToken cancellationToken = default)
         {
+            if (stream == null) throw new ArgumentNullException(nameof(stream));
             if (width <= 0) throw new ArgumentOutOfRangeException(nameof(width));
             if (height <= 0) throw new ArgumentOutOfRangeException(nameof(height));
 
@@ -40,6 +41,7 @@ namespace Perceptash.Transformers
                 }
 
                 return pixels;
+
             }, cancellationToken);
         }
     }

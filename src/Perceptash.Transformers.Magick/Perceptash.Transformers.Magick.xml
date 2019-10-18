@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Perceptash.Transformers.Magick</name>
+    </assembly>
+    <members>
+        <member name="T:Perceptash.Transformers.ImageMagickTransformer">
+            <summary>
+            Реализация методов преобразования изображений на основе библиотеки https://github.com/dlemstra/Magick.NET
+            </summary>
+        </member>
+        <member name="M:Perceptash.Transformers.ImageMagickTransformer.ConvertToGreyscaleAndResizeAsync(System.IO.Stream,System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

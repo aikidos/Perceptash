@@ -10,28 +10,38 @@
             </summary>
             <typeparam name="THash">Тип значения хеш-суммы.</typeparam>
         </member>
-        <member name="M:Perceptash.Computers.IImageHashComputer`1.ComputeAsync(System.IO.Stream,Perceptash.Transformers.IImageTransformer)">
+        <member name="M:Perceptash.Computers.IImageHashComputer`1.ComputeAsync(System.IO.Stream,Perceptash.Transformers.IImageTransformer,System.Threading.CancellationToken)">
             <summary>
             Возвращает хеш-сумму изображения.
             </summary>
             <param name="stream">Поток, который относится к изображению.</param>
             <param name="transformer">Реализация методов преобразования изображения.</param>
+            <param name="cancellationToken">Токен отмены операции.</param>
         </member>
         <member name="T:Perceptash.Computers.ImageAverageHashComputer">
             <summary>
             Реализация метода расчета хеш-суммы по алгоритму среднего хеша.
             </summary>
         </member>
-        <member name="M:Perceptash.Computers.ImageAverageHashComputer.ComputeAsync(System.IO.Stream,Perceptash.Transformers.IImageTransformer)">
+        <member name="M:Perceptash.Computers.ImageAverageHashComputer.ComputeAsync(System.IO.Stream,Perceptash.Transformers.IImageTransformer,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="T:Perceptash.Computers.ImageDifferenceHashComputer">
+        <member name="T:Perceptash.Computers.ImageDifferenceHash256Computer">
             <summary>
-            Реализация метода расчета хеш-суммы.
+            Реализация метода расчета 256-битной хеш-суммы.
             Описание алгоритма: http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html
             </summary>
         </member>
-        <member name="M:Perceptash.Computers.ImageDifferenceHashComputer.ComputeAsync(System.IO.Stream,Perceptash.Transformers.IImageTransformer)">
+        <member name="M:Perceptash.Computers.ImageDifferenceHash256Computer.ComputeAsync(System.IO.Stream,Perceptash.Transformers.IImageTransformer,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:Perceptash.Computers.ImageDifferenceHash64Computer">
+            <summary>
+            Реализация метода расчета 64-битной хеш-суммы.
+            Описание алгоритма: http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html
+            </summary>
+        </member>
+        <member name="M:Perceptash.Computers.ImageDifferenceHash64Computer.ComputeAsync(System.IO.Stream,Perceptash.Transformers.IImageTransformer,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:Perceptash.ImageHasherExtensions">
@@ -68,12 +78,12 @@
         </member>
         <member name="T:Perceptash.ImageAverageHash">
             <summary>
-            хеш-сумма, рассчитанная по алгоритму среднего хеша.
+            Хеш-сумма, рассчитанная по алгоритму среднего хеша.
             </summary>
         </member>
         <member name="P:Perceptash.ImageAverageHash.InternalValue">
             <summary>
-            хеш-сумма.
+            Хеш-сумма.
             </summary>
         </member>
         <member name="M:Perceptash.ImageAverageHash.#ctor(System.UInt64)">
@@ -85,23 +95,42 @@
         <member name="M:Perceptash.ImageAverageHash.Similarity(Perceptash.ImageAverageHash)">
             <inheritdoc />
         </member>
-        <member name="T:Perceptash.ImageDifferenceHash">
+        <member name="T:Perceptash.ImageDifferenceHash256">
             <summary>
-            хеш-сумма, рассчитанная по алгоритму http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html
+            256-битная хеш-сумма, рассчитанная по алгоритму http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html
             </summary>
         </member>
-        <member name="P:Perceptash.ImageDifferenceHash.InternalValue">
+        <member name="M:Perceptash.ImageDifferenceHash256.#ctor(System.ReadOnlySpan{System.UInt64})">
             <summary>
-            хеш-сумма.
+            Конструктор <see cref="T:Perceptash.ImageDifferenceHash256"/>.
+            </summary>
+            <param name="values">Хеш-сумма.</param>
+        </member>
+        <member name="M:Perceptash.ImageDifferenceHash256.GetInternalValuesSpan">
+            <summary>
+            Возвращает хеш-сумму в виде массива значений.
             </summary>
         </member>
-        <member name="M:Perceptash.ImageDifferenceHash.#ctor(System.UInt64)">
+        <member name="M:Perceptash.ImageDifferenceHash256.Similarity(Perceptash.ImageDifferenceHash256)">
+            <inheritdoc />
+        </member>
+        <member name="T:Perceptash.ImageDifferenceHash64">
             <summary>
-            Конструктор <see cref="T:Perceptash.ImageDifferenceHash"/>.
+            64-битная хеш-сумма, рассчитанная по алгоритму http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html
+            </summary>
+        </member>
+        <member name="P:Perceptash.ImageDifferenceHash64.InternalValue">
+            <summary>
+            Хеш-сумма.
+            </summary>
+        </member>
+        <member name="M:Perceptash.ImageDifferenceHash64.#ctor(System.UInt64)">
+            <summary>
+            Конструктор <see cref="T:Perceptash.ImageDifferenceHash64"/>.
             </summary>
             <param name="value">Хеш-сумма.</param>
         </member>
-        <member name="M:Perceptash.ImageDifferenceHash.Similarity(Perceptash.ImageDifferenceHash)">
+        <member name="M:Perceptash.ImageDifferenceHash64.Similarity(Perceptash.ImageDifferenceHash64)">
             <inheritdoc />
         </member>
         <member name="T:Perceptash.IImageHasher">
@@ -114,13 +143,14 @@
             Реализация методов преобразования изображения.
             </summary>
         </member>
-        <member name="M:Perceptash.IImageHasher.CalculateAsync``1(System.IO.Stream,Perceptash.Computers.IImageHashComputer{``0})">
+        <member name="M:Perceptash.IImageHasher.CalculateAsync``1(System.IO.Stream,Perceptash.Computers.IImageHashComputer{``0},System.Threading.CancellationToken)">
             <summary>
             Возвращает хеш-сумму изображения.
             </summary>
             <typeparam name="THash">Тип значения хеш-суммы.</typeparam>
             <param name="stream">Поток, который относится к изображению.</param>
             <param name="computer">Реализация метода расчета хеш-суммы.</param>
+            <param name="cancellationToken">Токен отмены операции.</param>
         </member>
         <member name="T:Perceptash.ImageHasher">
             <summary>
@@ -136,7 +166,7 @@
             </summary>
             <param name="transformer">Реализация методов преобразования изображения.</param>
         </member>
-        <member name="M:Perceptash.ImageHasher.CalculateAsync``1(System.IO.Stream,Perceptash.Computers.IImageHashComputer{``0})">
+        <member name="M:Perceptash.ImageHasher.CalculateAsync``1(System.IO.Stream,Perceptash.Computers.IImageHashComputer{``0},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:Perceptash.KnownImageHashes">
@@ -144,9 +174,15 @@
             Содержит статические экземпляры реализаций <see cref="T:Perceptash.Computers.IImageHashComputer`1"/> для переиспользования.
             </summary>
         </member>
-        <member name="P:Perceptash.KnownImageHashes.Difference">
+        <member name="P:Perceptash.KnownImageHashes.Difference64">
             <summary>
-            Реализация расчета хеш-суммы.
+            Реализация расчета 64-битной хеш-суммы.
+            Описание алгоритма: http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html
+            </summary>
+        </member>
+        <member name="P:Perceptash.KnownImageHashes.Difference256">
+            <summary>
+            Реализация расчета 256-битной хеш-суммы.
             Описание алгоритма: http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html
             </summary>
         </member>
@@ -155,36 +191,19 @@
             Реализация расчета хеш-суммы по алгоритму среднего хеша.
             </summary>
         </member>
-        <member name="T:Perceptash.KnownImageTransformers">
-            <summary>
-            Содержит статические экземпляры реализаций <see cref="T:Perceptash.Transformers.IImageTransformer"/> для переиспользования.
-            </summary>
-        </member>
-        <member name="P:Perceptash.KnownImageTransformers.SixLaborsImageSharp">
-            <summary>
-            Реализация методов преобразования изображений на основе библиотеки https://github.com/SixLabors/ImageSharp
-            </summary>
-        </member>
         <member name="T:Perceptash.Transformers.IImageTransformer">
             <summary>
             Интерфейс, используемый для описания реализаций методов преобразования изображений.
             </summary>
         </member>
-        <member name="M:Perceptash.Transformers.IImageTransformer.ConvertToGreyscaleAndResizeAsync(System.IO.Stream,System.Int32,System.Int32)">
+        <member name="M:Perceptash.Transformers.IImageTransformer.ConvertToGreyscaleAndResizeAsync(System.IO.Stream,System.Int32,System.Int32,System.Threading.CancellationToken)">
             <summary>
             Преобразовывает изображение в черно-белое, изменяет его размер и возвращает результирующий массив байт.
             </summary>
             <param name="stream">Поток, который относится к изображению.</param>
             <param name="width">Новая ширина изображения.</param>
             <param name="height">Новая высота изображения.</param>
-        </member>
-        <member name="T:Perceptash.Transformers.ImageSixLaborsTransformer">
-            <summary>
-            Реализация методов преобразования изображений на основе библиотеки https://github.com/SixLabors/ImageSharp
-            </summary>
-        </member>
-        <member name="M:Perceptash.Transformers.ImageSixLaborsTransformer.ConvertToGreyscaleAndResizeAsync(System.IO.Stream,System.Int32,System.Int32)">
-            <inheritdoc />
+            <param name="cancellationToken">Токен отмены операции.</param>
         </member>
     </members>
 </doc>

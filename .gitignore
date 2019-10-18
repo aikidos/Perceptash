@@ -6,3 +6,7 @@ tests/Perceptash.Tests/obj
 src/Perceptash/bin
 src/Perceptash/obj
 .idea
+src/Perceptash.Transformers.ImageSharp/bin
+src/Perceptash.Transformers.ImageSharp/obj
+src/Perceptash.Transformers.Magick/bin
+src/Perceptash.Transformers.Magick/obj

@@ -25,6 +25,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Perceptash.Transformers.ImageSharp\Perceptash.Transformers.ImageSharp.csproj" />
+    <ProjectReference Include="..\..\src\Perceptash.Transformers.Magick\Perceptash.Transformers.Magick.csproj" />
     <ProjectReference Include="..\..\src\Perceptash\Perceptash.csproj" />
   </ItemGroup>
 
