@@ -1,6 +1,5 @@
 ﻿using System.Drawing;
 using System.IO;
-using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Configs;
 using DupImageLib;
@@ -43,44 +42,44 @@ namespace Perceptash.Benchmarks
 
         [BenchmarkCategory("Perceptash (ImageSharp)")]
         [Benchmark(Description = "KnownImageHashes.Difference64")]
-        public async Task<ImageDifferenceHash64> Perceptash_ImageSharp_Difference_64()
+        public ImageDifferenceHash64 Perceptash_ImageSharp_Difference_64()
         {
-            return await _perceptashImageSharp.CalculateAsync(_imageStream, KnownImageHashes.Difference64);
+            return _perceptashImageSharp.Calculate(_imageStream, KnownImageHashes.Difference64);
         }
 
         [BenchmarkCategory("Perceptash (ImageSharp)")]
         [Benchmark(Description = "KnownImageHashes.Difference256")]
-        public async Task<ImageDifferenceHash256> Perceptash_ImageSharp_Difference_256()
+        public ImageDifferenceHash256 Perceptash_ImageSharp_Difference_256()
         {
-            return await _perceptashImageSharp.CalculateAsync(_imageStream, KnownImageHashes.Difference256);
+            return _perceptashImageSharp.Calculate(_imageStream, KnownImageHashes.Difference256);
         }
 
         [BenchmarkCategory("Perceptash (ImageSharp)")]
         [Benchmark(Description = "KnownImageHashes.Average")]
-        public async Task<ImageAverageHash> Perceptash_ImageSharp_Average()
+        public ImageAverageHash Perceptash_ImageSharp_Average()
         {
-            return await _perceptashImageSharp.CalculateAsync(_imageStream, KnownImageHashes.Average);
+            return _perceptashImageSharp.Calculate(_imageStream, KnownImageHashes.Average);
         }
 
         [BenchmarkCategory("Perceptash (Magick.NET)")]
         [Benchmark(Description = "KnownImageHashes.Difference64")]
-        public async Task<ImageDifferenceHash64> Perceptash_Magick_Difference_64()
+        public ImageDifferenceHash64 Perceptash_Magick_Difference_64()
         {
-            return await _perceptashMagick.CalculateAsync(_imageStream, KnownImageHashes.Difference64);
+            return _perceptashMagick.Calculate(_imageStream, KnownImageHashes.Difference64);
         }
 
         [BenchmarkCategory("Perceptash (Magick.NET)")]
         [Benchmark(Description = "KnownImageHashes.Difference256")]
-        public async Task<ImageDifferenceHash256> Perceptash_Magick_Difference_256()
+        public ImageDifferenceHash256 Perceptash_Magick_Difference_256()
         {
-            return await _perceptashMagick.CalculateAsync(_imageStream, KnownImageHashes.Difference256);
+            return _perceptashMagick.Calculate(_imageStream, KnownImageHashes.Difference256);
         }
 
         [BenchmarkCategory("Perceptash (Magick.NET)")]
         [Benchmark(Description = "KnownImageHashes.Average")]
-        public async Task<ImageAverageHash> Perceptash_Magick_Average()
+        public ImageAverageHash Perceptash_Magick_Average()
         {
-            return await _perceptashMagick.CalculateAsync(_imageStream, KnownImageHashes.Average);
+            return _perceptashMagick.Calculate(_imageStream, KnownImageHashes.Average);
         }
 
         [BenchmarkCategory("DupImageLib (Magick.NET)")]

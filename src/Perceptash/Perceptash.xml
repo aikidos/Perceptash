@@ -10,20 +10,19 @@
             </summary>
             <typeparam name="THash">Тип значения хеш-суммы.</typeparam>
         </member>
-        <member name="M:Perceptash.Computers.IImageHashComputer`1.ComputeAsync(System.IO.Stream,Perceptash.Transformers.IImageTransformer,System.Threading.CancellationToken)">
+        <member name="M:Perceptash.Computers.IImageHashComputer`1.Compute(System.IO.Stream,Perceptash.Transformers.IImageTransformer)">
             <summary>
             Возвращает хеш-сумму изображения.
             </summary>
             <param name="stream">Поток, который относится к изображению.</param>
             <param name="transformer">Реализация методов преобразования изображения.</param>
-            <param name="cancellationToken">Токен отмены операции.</param>
         </member>
         <member name="T:Perceptash.Computers.ImageAverageHashComputer">
             <summary>
             Реализация метода расчета хеш-суммы по алгоритму среднего хеша.
             </summary>
         </member>
-        <member name="M:Perceptash.Computers.ImageAverageHashComputer.ComputeAsync(System.IO.Stream,Perceptash.Transformers.IImageTransformer,System.Threading.CancellationToken)">
+        <member name="M:Perceptash.Computers.ImageAverageHashComputer.Compute(System.IO.Stream,Perceptash.Transformers.IImageTransformer)">
             <inheritdoc />
         </member>
         <member name="T:Perceptash.Computers.ImageDifferenceHash256Computer">
@@ -32,7 +31,7 @@
             Описание алгоритма: http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html
             </summary>
         </member>
-        <member name="M:Perceptash.Computers.ImageDifferenceHash256Computer.ComputeAsync(System.IO.Stream,Perceptash.Transformers.IImageTransformer,System.Threading.CancellationToken)">
+        <member name="M:Perceptash.Computers.ImageDifferenceHash256Computer.Compute(System.IO.Stream,Perceptash.Transformers.IImageTransformer)">
             <inheritdoc />
         </member>
         <member name="T:Perceptash.Computers.ImageDifferenceHash64Computer">
@@ -41,7 +40,7 @@
             Описание алгоритма: http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html
             </summary>
         </member>
-        <member name="M:Perceptash.Computers.ImageDifferenceHash64Computer.ComputeAsync(System.IO.Stream,Perceptash.Transformers.IImageTransformer,System.Threading.CancellationToken)">
+        <member name="M:Perceptash.Computers.ImageDifferenceHash64Computer.Compute(System.IO.Stream,Perceptash.Transformers.IImageTransformer)">
             <inheritdoc />
         </member>
         <member name="T:Perceptash.ImageHasherExtensions">
@@ -49,7 +48,7 @@
             Вспомогательный класс для работы с реализациями <see cref="T:Perceptash.IImageHasher"/>.
             </summary>
         </member>
-        <member name="M:Perceptash.ImageHasherExtensions.CalculateAsync``1(Perceptash.IImageHasher,System.String,Perceptash.Computers.IImageHashComputer{``0})">
+        <member name="M:Perceptash.ImageHasherExtensions.Calculate``1(Perceptash.IImageHasher,System.String,Perceptash.Computers.IImageHashComputer{``0})">
             <summary>
             Возвращает хеш-сумму файла изображения.
             </summary>
@@ -143,14 +142,13 @@
             Реализация методов преобразования изображения.
             </summary>
         </member>
-        <member name="M:Perceptash.IImageHasher.CalculateAsync``1(System.IO.Stream,Perceptash.Computers.IImageHashComputer{``0},System.Threading.CancellationToken)">
+        <member name="M:Perceptash.IImageHasher.Calculate``1(System.IO.Stream,Perceptash.Computers.IImageHashComputer{``0})">
             <summary>
             Возвращает хеш-сумму изображения.
             </summary>
             <typeparam name="THash">Тип значения хеш-суммы.</typeparam>
             <param name="stream">Поток, который относится к изображению.</param>
             <param name="computer">Реализация метода расчета хеш-суммы.</param>
-            <param name="cancellationToken">Токен отмены операции.</param>
         </member>
         <member name="T:Perceptash.ImageHasher">
             <summary>
@@ -166,7 +164,7 @@
             </summary>
             <param name="transformer">Реализация методов преобразования изображения.</param>
         </member>
-        <member name="M:Perceptash.ImageHasher.CalculateAsync``1(System.IO.Stream,Perceptash.Computers.IImageHashComputer{``0},System.Threading.CancellationToken)">
+        <member name="M:Perceptash.ImageHasher.Calculate``1(System.IO.Stream,Perceptash.Computers.IImageHashComputer{``0})">
             <inheritdoc />
         </member>
         <member name="T:Perceptash.KnownImageHashes">
@@ -196,14 +194,13 @@
             Интерфейс, используемый для описания реализаций методов преобразования изображений.
             </summary>
         </member>
-        <member name="M:Perceptash.Transformers.IImageTransformer.ConvertToGreyscaleAndResizeAsync(System.IO.Stream,System.Int32,System.Int32,System.Threading.CancellationToken)">
+        <member name="M:Perceptash.Transformers.IImageTransformer.ConvertToGreyscaleAndResize(System.IO.Stream,System.Int32,System.Int32)">
             <summary>
             Преобразовывает изображение в черно-белое, изменяет его размер и возвращает результирующий массив байт.
             </summary>
             <param name="stream">Поток, который относится к изображению.</param>
             <param name="width">Новая ширина изображения.</param>
             <param name="height">Новая высота изображения.</param>
-            <param name="cancellationToken">Токен отмены операции.</param>
         </member>
     </members>
 </doc>

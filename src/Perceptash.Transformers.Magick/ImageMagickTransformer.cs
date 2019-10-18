@@ -1,7 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
 using ImageMagick;
 
 namespace Perceptash.Transformers
@@ -12,37 +10,32 @@ namespace Perceptash.Transformers
     public sealed class ImageMagickTransformer : IImageTransformer
     {
         /// <inheritdoc />
-        public Task<byte[]> ConvertToGreyscaleAndResizeAsync(Stream stream, int width, int height,
-            CancellationToken cancellationToken = default)
+        public byte[] ConvertToGreyscaleAndResize(Stream stream, int width, int height)
         {
             if (stream == null) throw new ArgumentNullException(nameof(stream));
             if (width <= 0) throw new ArgumentOutOfRangeException(nameof(width));
             if (height <= 0) throw new ArgumentOutOfRangeException(nameof(height));
 
-            return Task.Run(() =>
+            using var image = new MagickImage(stream);
+
+            var settings = new QuantizeSettings
             {
-                using var image = new MagickImage(stream);
+                ColorSpace = ColorSpace.Gray,
+                Colors = 256
+            };
 
-                var settings = new QuantizeSettings
-                {
-                    ColorSpace = ColorSpace.Gray,
-                    Colors = 256
-                };
+            var size = new MagickGeometry(width, height)
+            {
+                IgnoreAspectRatio = true
+            };
 
-                var size = new MagickGeometry(width, height)
-                {
-                    IgnoreAspectRatio = true
-                };
+            image.Quantize(settings);
 
-                image.Quantize(settings);
+            image.Resize(size);
 
-                image.Resize(size);
+            using var pixels = image.GetPixels();
 
-                using var pixels = image.GetPixels();
-
-                return pixels.GetValues();
-
-            }, cancellationToken);
+            return pixels.GetValues();
         }
     }
 }

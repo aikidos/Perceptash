@@ -1,7 +1,5 @@
 using System.IO;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using Moq;
 using Perceptash.Transformers;
 using Xunit;
@@ -11,17 +9,17 @@ namespace Perceptash.Tests
     public class ImageHasherTests
     {
         [Fact]
-        public async Task Calculate()
+        public void Calculate()
         {
             // Arrange
             var transformer = new Mock<IImageTransformer>();
-            transformer.Setup(impl => impl.ConvertToGreyscaleAndResizeAsync(It.IsAny<Stream>(), 9, 8, CancellationToken.None))
-                .ReturnsAsync(() => Enumerable.Range(1, 72).Reverse().Select(value => (byte)value).ToArray());
+            transformer.Setup(impl => impl.ConvertToGreyscaleAndResize(It.IsAny<Stream>(), 9, 8))
+                .Returns(() => Enumerable.Range(1, 72).Reverse().Select(value => (byte)value).ToArray());
 
             IImageHasher hasher = new ImageHasher(transformer.Object);
 
             // Act
-            ImageDifferenceHash64 hash = await hasher.CalculateAsync(Stream.Null, KnownImageHashes.Difference64);
+            ImageDifferenceHash64 hash = hasher.Calculate(Stream.Null, KnownImageHashes.Difference64);
 
             // Assert
             Assert.Equal(18446744073709551615UL, hash.InternalValue);

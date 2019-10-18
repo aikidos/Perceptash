@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Threading.Tasks;
 using Perceptash.Computers;
 
 namespace Perceptash
@@ -17,7 +16,7 @@ namespace Perceptash
         /// <param name="hasher">Реализация <see cref="IImageHasher"/>.</param>
         /// <param name="filePath">Полный путь до файла изображения.</param>
         /// <param name="computer">Реализация метода расчета хеш-суммы.</param>
-        public static async Task<THash> CalculateAsync<THash>(this IImageHasher hasher, string filePath, IImageHashComputer<THash> computer)
+        public static THash Calculate<THash>(this IImageHasher hasher, string filePath, IImageHashComputer<THash> computer)
             where THash : struct, IImageHashComparable<THash>
         {
             if (hasher == null) throw new ArgumentNullException(nameof(hasher));
@@ -25,9 +24,9 @@ namespace Perceptash
             if (string.IsNullOrWhiteSpace(filePath))
                 throw new ArgumentException("Value cannot be null or whitespace.", nameof(filePath));
 
-            await using var stream = File.OpenRead(filePath);
+            using var stream = File.OpenRead(filePath);
 
-            return await hasher.CalculateAsync(stream, computer);
+            return hasher.Calculate(stream, computer);
         }
     }
 }

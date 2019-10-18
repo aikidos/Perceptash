@@ -1,7 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Advanced;
 using SixLabors.ImageSharp.PixelFormats;
@@ -15,34 +13,29 @@ namespace Perceptash.Transformers
     public sealed class ImageSharpTransformer : IImageTransformer
     {
         /// <inheritdoc />
-        public Task<byte[]> ConvertToGreyscaleAndResizeAsync(Stream stream, int width, int height, 
-            CancellationToken cancellationToken = default)
+        public byte[] ConvertToGreyscaleAndResize(Stream stream, int width, int height)
         {
             if (stream == null) throw new ArgumentNullException(nameof(stream));
             if (width <= 0) throw new ArgumentOutOfRangeException(nameof(width));
             if (height <= 0) throw new ArgumentOutOfRangeException(nameof(height));
 
-            return Task.Run(() =>
+            using var image = Image.Load<Gray8>(stream);
+
+            image.Mutate(context =>
             {
-                using var image = Image.Load<Gray8>(stream);
+                context.Resize(width, height);
+            });
 
-                image.Mutate(context =>
-                {
-                    context.Resize(width, height);
-                });
+            var span = image.GetPixelSpan();
 
-                var span = image.GetPixelSpan();
-                
-                var pixels = new byte[span.Length];
+            var pixels = new byte[span.Length];
 
-                for (int i = 0; i < span.Length; i++)
-                {
-                    pixels[i] = span[i].PackedValue;
-                }
+            for (int i = 0; i < span.Length; i++)
+            {
+                pixels[i] = span[i].PackedValue;
+            }
 
-                return pixels;
-
-            }, cancellationToken);
+            return pixels;
         }
     }
 }

@@ -9,7 +9,7 @@
             Реализация методов преобразования изображений на основе библиотеки https://github.com/dlemstra/Magick.NET
             </summary>
         </member>
-        <member name="M:Perceptash.Transformers.ImageMagickTransformer.ConvertToGreyscaleAndResizeAsync(System.IO.Stream,System.Int32,System.Int32,System.Threading.CancellationToken)">
+        <member name="M:Perceptash.Transformers.ImageMagickTransformer.ConvertToGreyscaleAndResize(System.IO.Stream,System.Int32,System.Int32)">
             <inheritdoc />
         </member>
     </members>
