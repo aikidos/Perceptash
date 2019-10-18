@@ -10,7 +10,9 @@ Library offering several different perceptual hashing algorithms for detecting s
 # API
 
 ```csharp
+// Create the transformer instance using the package `Perceptash.Transformers.ImageSharp`.
 IImageTransformer transformer = new ImageSharpTransformer();
+
 IImageHasher hasher = new ImageHasher(transformer);
 
 await using Stream cat = File.OpenRead("cat.jpg");

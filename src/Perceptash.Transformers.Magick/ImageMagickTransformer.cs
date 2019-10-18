@@ -29,12 +29,12 @@ namespace Perceptash.Transformers
                     Colors = 256
                 };
 
-                image.Quantize(settings);
-
                 var size = new MagickGeometry(width, height)
                 {
                     IgnoreAspectRatio = true
                 };
+
+                image.Quantize(settings);
 
                 image.Resize(size);
 
