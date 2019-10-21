@@ -4,17 +4,17 @@ using Perceptash.Transformers;
 namespace Perceptash.Computers
 {
     /// <summary>
-    /// Интерфейс, используемый для описания реализации метода расчета хеш-суммы.
+    /// Interface used for implementing calculation hash algorithms.
     /// </summary>
-    /// <typeparam name="THash">Тип значения хеш-суммы.</typeparam>
+    /// <typeparam name="THash">Type of hash value.</typeparam>
     public interface IImageHashComputer<THash>
         where THash : struct, IImageHashComparable<THash>
     {
         /// <summary>
-        /// Возвращает хеш-сумму изображения.
+        /// Returns hash of the image.
         /// </summary>
-        /// <param name="stream">Поток, который относится к изображению.</param>
-        /// <param name="transformer">Реализация методов преобразования изображения.</param>
+        /// <param name="stream">Stream to the image.</param>
+        /// <param name="transformer">Implementation of image conversion methods.</param>
         THash Compute(Stream stream, IImageTransformer transformer);
     }
 }

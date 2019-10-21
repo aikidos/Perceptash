@@ -5,7 +5,7 @@ using ImageMagick;
 namespace Perceptash.Transformers
 {
     /// <summary>
-    /// Реализация методов преобразования изображений на основе библиотеки https://github.com/dlemstra/Magick.NET
+    /// Implementing image conversion methods based on https://github.com/dlemstra/Magick.NET
     /// </summary>
     public sealed class ImageMagickTransformer : IImageTransformer
     {

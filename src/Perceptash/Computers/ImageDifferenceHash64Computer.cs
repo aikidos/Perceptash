@@ -5,8 +5,8 @@ using Perceptash.Transformers;
 namespace Perceptash.Computers
 {
     /// <summary>
-    /// Реализация метода расчета 64-битной хеш-суммы.
-    /// Описание алгоритма: http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html
+    /// Implementation of 64-bit hash calculation method using difference hash.
+    /// See http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html
     /// </summary>
     public sealed class ImageDifferenceHash64Computer : IImageHashComputer<ImageDifferenceHash64>
     {

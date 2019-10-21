@@ -3,24 +3,24 @@
 namespace Perceptash
 {
     /// <summary>
-    /// Содержит статические экземпляры реализаций <see cref="IImageHashComputer{THash}"/> для переиспользования.
+    /// Contains reusable static instances of known calculation hash algorithms.
     /// </summary>
     public static class KnownImageHashes
     {
         /// <summary>
-        /// Реализация расчета 64-битной хеш-суммы.
-        /// Описание алгоритма: http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html
+        /// Implementation of 64-bit hash calculation method using difference hash.
+        /// See http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html
         /// </summary>
         public static IImageHashComputer<ImageDifferenceHash64> Difference64 { get; } = new ImageDifferenceHash64Computer();
 
         /// <summary>
-        /// Реализация расчета 256-битной хеш-суммы.
-        /// Описание алгоритма: http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html
+        /// Implementation of 256-bit hash calculation method using difference hash.
+        /// See http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html
         /// </summary>
         public static IImageHashComputer<ImageDifferenceHash256> Difference256 { get; } = new ImageDifferenceHash256Computer();
 
         /// <summary>
-        /// Реализация расчета хеш-суммы по алгоритму среднего хеша.
+        /// Implementation of hash calculation method using average algorithm.
         /// </summary>
         public static IImageHashComputer<ImageAverageHash> Average { get; } = new ImageAverageHashComputer();
     }

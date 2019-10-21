@@ -3,16 +3,16 @@
 namespace Perceptash.Transformers
 {
     /// <summary>
-    /// Интерфейс, используемый для описания реализаций методов преобразования изображений.
+    /// Interface used for implementing image conversion methods.
     /// </summary>
     public interface IImageTransformer
     {
         /// <summary>
-        /// Преобразовывает изображение в черно-белое, изменяет его размер и возвращает результирующий массив байт.
+        /// Converts an image to grayscale, resizes it and returns resulting array of bytes.
         /// </summary>
-        /// <param name="stream">Поток, который относится к изображению.</param>
-        /// <param name="width">Новая ширина изображения.</param>
-        /// <param name="height">Новая высота изображения.</param>
+        /// <param name="stream">Stream to the image.</param>
+        /// <param name="width">New image width.</param>
+        /// <param name="height">New image height.</param>
         byte[] ConvertToGreyscaleAndResize(Stream stream, int width, int height);
     }
 }

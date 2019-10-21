@@ -1,19 +1,19 @@
 ﻿namespace Perceptash
 {
     /// <summary>
-    /// Хеш-сумма, рассчитанная по алгоритму среднего хеша.
+    /// The hash, calculated using the average hash algorithm.
     /// </summary>
     public readonly struct ImageAverageHash : IImageHashComparable<ImageAverageHash>
     {
         /// <summary>
-        /// Хеш-сумма.
+        /// Hash value.
         /// </summary>
         public ulong InternalValue { get; }
 
         /// <summary>
-        /// Конструктор <see cref="ImageAverageHash"/>.
+        /// Constructor of <see cref="ImageAverageHash"/>.
         /// </summary>
-        /// <param name="value">Хеш-сумма.</param>
+        /// <param name="value">Hash value.</param>
         public ImageAverageHash(ulong value)
         {
             InternalValue = value;

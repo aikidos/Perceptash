@@ -5,7 +5,6 @@ Library offering several different perceptual hashing algorithms for detecting s
 # Todo
 
 - [ ] Set up automatic deployment of `nuget`-packages.
-- [ ] Translate everything into English.
 
 # API
 

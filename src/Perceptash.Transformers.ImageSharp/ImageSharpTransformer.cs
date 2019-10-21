@@ -8,7 +8,7 @@ using SixLabors.ImageSharp.Processing;
 namespace Perceptash.Transformers
 {
     /// <summary>
-    /// Реализация методов преобразования изображений на основе библиотеки https://github.com/SixLabors/ImageSharp
+    /// Implementing image conversion methods based on https://github.com/SixLabors/ImageSharp
     /// </summary>
     public sealed class ImageSharpTransformer : IImageTransformer
     {
