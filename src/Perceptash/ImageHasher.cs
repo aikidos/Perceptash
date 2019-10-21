@@ -6,7 +6,7 @@ using Perceptash.Transformers;
 namespace Perceptash
 {
     /// <summary>
-    /// Реализация метода расчета хеш-суммы.
+    /// Implementation of the hash calculation methods.
     /// </summary>
     public sealed class ImageHasher : IImageHasher
     {
@@ -14,9 +14,9 @@ namespace Perceptash
         public IImageTransformer Transformer { get; }
 
         /// <summary>
-        /// Конструктор <see cref="ImageHasher"/>.
+        /// Constructor of <see cref="ImageHasher"/>.
         /// </summary>
-        /// <param name="transformer">Реализация методов преобразования изображения.</param>
+        /// <param name="transformer">Implementation of hash calculation algorithm.</param>
         public ImageHasher(IImageTransformer transformer)
         {
             Transformer = transformer ?? throw new ArgumentNullException(nameof(transformer));

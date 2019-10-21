@@ -5,21 +5,21 @@ using Perceptash.Transformers;
 namespace Perceptash
 {
     /// <summary>
-    /// Интерфейс, используемый для описания реализации метода расчета хеш-суммы.
+    /// Interface used for implementing calculation hash methods.
     /// </summary>
     public interface IImageHasher
     {
         /// <summary>
-        /// Реализация методов преобразования изображения.
+        /// Implementation of image conversion methods.
         /// </summary>
         IImageTransformer Transformer { get; }
 
         /// <summary>
-        /// Возвращает хеш-сумму изображения.
+        /// Returns hash of the image.
         /// </summary>
-        /// <typeparam name="THash">Тип значения хеш-суммы.</typeparam>
-        /// <param name="stream">Поток, который относится к изображению.</param>
-        /// <param name="computer">Реализация метода расчета хеш-суммы.</param>
+        /// <typeparam name="THash">Type of hash value.</typeparam>
+        /// <param name="stream">Stream to the image.</param>
+        /// <param name="computer">Implementation of hash calculation algorithm.</param>
         THash Calculate<THash>(Stream stream, IImageHashComputer<THash> computer)
             where THash : struct, IImageHashComparable<THash>;
     }

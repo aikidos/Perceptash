@@ -3,16 +3,16 @@
 namespace Perceptash
 {
     /// <summary>
-    /// 256-битная хеш-сумма, рассчитанная по алгоритму http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html
+    /// The 256-bit hash, calculated using http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html
     /// </summary>
     public readonly struct ImageDifferenceHash256 : IImageHashComparable<ImageDifferenceHash256>
     {
         private readonly ulong[] _internalValues;
 
         /// <summary>
-        /// Конструктор <see cref="ImageDifferenceHash256"/>.
+        /// Constructor of <see cref="ImageDifferenceHash256"/>.
         /// </summary>
-        /// <param name="values">Хеш-сумма.</param>
+        /// <param name="values">Hash values.</param>
         public ImageDifferenceHash256(ReadOnlySpan<ulong> values)
         {
             if (values == null) throw new ArgumentNullException(nameof(values));
@@ -23,7 +23,7 @@ namespace Perceptash
         }
 
         /// <summary>
-        /// Возвращает хеш-сумму в виде массива значений.
+        /// Returns hash as a span of values.
         /// </summary>
         public ReadOnlySpan<ulong> GetInternalValuesSpan()
         {
