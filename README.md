@@ -4,9 +4,9 @@
 
 Library offering several different perceptual hashing algorithms for detecting similar or duplicate images.
 
-# Todo
-
-- [ ] Set up automatic deployment of `nuget`-packages.
+* [Usage](#usage)
+* [Available Transformers](#available-transformers)
+* [Benchmarks](#benchmarks)
 
 # Usage
 
