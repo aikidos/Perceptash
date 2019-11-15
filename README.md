@@ -1,3 +1,5 @@
+![Actions Status](https://github.com/aikidos/Perceptash/workflows/build/badge.svg)
+
 # Perceptash
 
 Library offering several different perceptual hashing algorithms for detecting similar or duplicate images.
