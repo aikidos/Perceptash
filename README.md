@@ -1,14 +1,12 @@
 ![Actions Status](https://github.com/aikidos/Perceptash/workflows/build/badge.svg)
 
-# Perceptash
+Perceptash
+===
 
 Library offering several different perceptual hashing algorithms for detecting similar or duplicate images.
 
-* [Usage](#usage)
-* [Available Transformers](#available-transformers)
-* [Benchmarks](#benchmarks)
-
-# Usage
+Example
+---
 
 ```csharp
 // Create transformer instance using the package `Perceptash.Transformers.ImageSharp`.
@@ -25,15 +23,17 @@ float similarity = hash1.Similarity(hash2); // 0.46875
 > **Note:**  
 At the moment, only `.NET Core 3.0` and higher is supported.
 
-# Available Transformers
+Available Transformers
+---
 
-**Perceptash.Transformers.ImageSharp**  
+*Perceptash.Transformers.ImageSharp*  
 based on https://github.com/SixLabors/ImageSharp  
 
-**Perceptash.Transformers.Magick**  
+*Perceptash.Transformers.Magick*  
 based on https://github.com/dlemstra/Magick.NET
 
-# Benchmarks
+Benchmarks
+--
 
 Image for testing: 3000x1971 (5 mb).
 
