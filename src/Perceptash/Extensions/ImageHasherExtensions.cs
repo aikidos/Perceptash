@@ -16,6 +16,13 @@ namespace Perceptash
         /// <param name="hasher">Implementation of <see cref="IImageHasher"/>.</param>
         /// <param name="filePath">Path to an image to be hashed.</param>
         /// <param name="computer">Implementation of hash calculation algorithm.</param>
+        /// <example>
+        /// <code>
+        ///     var hasher = new ImageHasher(transformer);
+        ///  
+        ///     var hash = hasher.Calculate("cat.jpg", KnownImageHashes.Difference64);
+        /// </code>
+        /// </example>
         public static THash Calculate<THash>(this IImageHasher hasher, string filePath, IImageHashComputer<THash> computer)
             where THash : struct, IImageHashComparable<THash>
         {

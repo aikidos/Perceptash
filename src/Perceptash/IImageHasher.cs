@@ -20,6 +20,15 @@ namespace Perceptash
         /// <typeparam name="THash">Type of hash value.</typeparam>
         /// <param name="stream">Stream to the image.</param>
         /// <param name="computer">Implementation of hash calculation algorithm.</param>
+        /// <example>
+        /// <code>
+        ///     var hasher = new ImageHasher(transformer);
+        ///  
+        ///     using var stream = File.OpenRead("cat.jpg");
+        ///  
+        ///     var hash = hasher.Calculate(stream, KnownImageHashes.Difference64);     
+        /// </code>
+        /// </example>
         THash Calculate<THash>(Stream stream, IImageHashComputer<THash> computer)
             where THash : struct, IImageHashComparable<THash>;
     }
