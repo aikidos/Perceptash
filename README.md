@@ -3,7 +3,9 @@
 Perceptash
 ===
 
-Library offering several different perceptual hashing algorithms for detecting similar or duplicate images.
+Library offering several different perceptual hashing algorithms for detecting similar or duplicate images.  
+
+*At the moment, only .NET Core 3.0 and higher is supported.*
 
 Example
 ---
@@ -19,9 +21,6 @@ var hash2 = hasher.Calculate("cat_rotated_90_degrees.jpg", KnownImageHashes.Diff
 
 float similarity = hash1.Similarity(hash2); // 0.46875
 ```
-
-> **Note:**  
-At the moment, only `.NET Core 3.0` and higher is supported.
 
 Available Transformers
 ---
