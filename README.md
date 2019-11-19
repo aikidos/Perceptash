@@ -11,20 +11,15 @@ Library offering several different perceptual hashing algorithms for detecting s
 # Usage
 
 ```csharp
-// Create the transformer instance using the package `Perceptash.Transformers.ImageSharp`.
-IImageTransformer transformer = new ImageSharpTransformer();
+// Create transformer instance using the package `Perceptash.Transformers.ImageSharp`.
+var transformer = new ImageSharpTransformer();
 
-IImageHasher hasher = new ImageHasher(transformer);
+var hasher = new ImageHasher(transformer);
 
-using Stream cat = File.OpenRead("cat.jpg");
-using Stream rotatedCat = File.OpenRead("cat_rotated_90_degrees.jpg");
+var hash1 = hasher.Calculate("cat.jpg", KnownImageHashes.Difference64);
+var hash2 = hasher.Calculate("cat_rotated_90_degrees.jpg", KnownImageHashes.Difference64);
 
-ImageDifferenceHash64 catHash = hasher.Calculate(cat, KnownImageHashes.Difference64);
-ImageDifferenceHash64 rotatedCatHash = hasher.Calculate(rotatedCat, KnownImageHashes.Difference64);
-
-float similarity = catHash.Similarity(rotatedCatHash);
-
-Console.WriteLine(similarity); // 0.46875
+float similarity = hash1.Similarity(hash2); // 0.46875
 ```
 
 > **Note:**  
