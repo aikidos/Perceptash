@@ -16,6 +16,10 @@
             </summary>
             <param name="stream">Stream to the image.</param>
             <param name="transformer">Implementation of image conversion methods.</param>
+            <exception cref="T:System.ArgumentNullException">
+                The <paramref name="stream"/> parameter is null.
+                The <paramref name="transformer"/> parameter is null.
+            </exception>
         </member>
         <member name="T:Perceptash.Computers.ImageAverageHashComputer">
             <summary>
@@ -56,6 +60,20 @@
             <param name="hasher">Implementation of <see cref="T:Perceptash.IImageHasher"/>.</param>
             <param name="filePath">Path to an image to be hashed.</param>
             <param name="computer">Implementation of hash calculation algorithm.</param>
+            <exception cref="T:System.ArgumentNullException">
+                The <paramref name="hasher"/> parameter is null.
+                The <paramref name="computer"/> parameter is null.
+            </exception>
+            <exception cref="T:System.ArgumentException">
+                The <paramref name="filePath"/> parameter is null, empty, or consists only of white-space characters.
+            </exception>
+            <example>
+            <code>
+                var hasher = new ImageHasher(transformer);
+             
+                var hash = hasher.Calculate("cat.jpg", KnownImageHashes.Difference64);
+            </code>
+            </example>
         </member>
         <member name="T:Perceptash.HammingWeight">
             <summary>
@@ -73,6 +91,16 @@
             if images are the same it will return 1.0 or 0.0 for completely different images
             </summary>
             <param name="otherHash">The hash to be used for comparison.</param>
+            <example>
+            <code>
+                var hasher = new ImageHasher(transformer);
+             
+                var hash1 = hasher.Calculate("cat.jpg", KnownImageHashes.Difference64);
+                var hash2 = hasher.Calculate("cat_rotated_90_degrees.jpg", KnownImageHashes.Difference64);
+             
+                float similarity = hash1.Similarity(hash2); // 0.46875
+            </code>
+            </example>
         </member>
         <member name="T:Perceptash.ImageAverageHash">
             <summary>
@@ -86,7 +114,7 @@
         </member>
         <member name="M:Perceptash.ImageAverageHash.#ctor(System.UInt64)">
             <summary>
-            Constructor of <see cref="T:Perceptash.ImageAverageHash"/>.
+            Initializes a new <see cref="T:Perceptash.ImageAverageHash"/>.
             </summary>
             <param name="value">Hash value.</param>
         </member>
@@ -100,9 +128,11 @@
         </member>
         <member name="M:Perceptash.ImageDifferenceHash256.#ctor(System.ReadOnlySpan{System.UInt64})">
             <summary>
-            Constructor of <see cref="T:Perceptash.ImageDifferenceHash256"/>.
+            Initializes a new <see cref="T:Perceptash.ImageDifferenceHash256"/>.
             </summary>
             <param name="values">Hash values.</param>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="values"/> parameter is null.</exception>
+            <exception cref="T:System.ArgumentException">The length of the <paramref name="values"/> is not four.</exception>
         </member>
         <member name="M:Perceptash.ImageDifferenceHash256.GetInternalValuesSpan">
             <summary>
@@ -124,7 +154,7 @@
         </member>
         <member name="M:Perceptash.ImageDifferenceHash64.#ctor(System.UInt64)">
             <summary>
-            Constructor of <see cref="T:Perceptash.ImageDifferenceHash64"/>.
+            Initializes a new <see cref="T:Perceptash.ImageDifferenceHash64"/>.
             </summary>
             <param name="value">Hash value.</param>
         </member>
@@ -148,6 +178,19 @@
             <typeparam name="THash">Type of hash value.</typeparam>
             <param name="stream">Stream to the image.</param>
             <param name="computer">Implementation of hash calculation algorithm.</param>
+            <exception cref="T:System.ArgumentNullException">
+                The <paramref name="stream"/> parameter is null.
+                The <paramref name="computer"/> parameter is null.
+            </exception>
+            <example>
+            <code>
+                var hasher = new ImageHasher(transformer);
+             
+                using var stream = File.OpenRead("cat.jpg");
+             
+                var hash = hasher.Calculate(stream, KnownImageHashes.Difference64);     
+            </code>
+            </example>
         </member>
         <member name="T:Perceptash.ImageHasher">
             <summary>
@@ -159,9 +202,10 @@
         </member>
         <member name="M:Perceptash.ImageHasher.#ctor(Perceptash.Transformers.IImageTransformer)">
             <summary>
-            Constructor of <see cref="T:Perceptash.ImageHasher"/>.
+            Initializes a new <see cref="T:Perceptash.ImageHasher"/>.
             </summary>
             <param name="transformer">Implementation of hash calculation algorithm.</param>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="transformer"/> parameter is null.</exception>
         </member>
         <member name="M:Perceptash.ImageHasher.Calculate``1(System.IO.Stream,Perceptash.Computers.IImageHashComputer{``0})">
             <inheritdoc />
@@ -200,6 +244,11 @@
             <param name="stream">Stream to the image.</param>
             <param name="width">New image width.</param>
             <param name="height">New image height.</param>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="stream"/> parameter is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+                The <paramref name="width"/> parameter is less than or equal to zero.
+                The <paramref name="height"/> parameter is less than or equal to zero.
+            </exception>
         </member>
     </members>
 </doc>

@@ -14,9 +14,10 @@ namespace Perceptash
         public IImageTransformer Transformer { get; }
 
         /// <summary>
-        /// Constructor of <see cref="ImageHasher"/>.
+        /// Initializes a new <see cref="ImageHasher"/>.
         /// </summary>
         /// <param name="transformer">Implementation of hash calculation algorithm.</param>
+        /// <exception cref="ArgumentNullException">The <paramref name="transformer"/> parameter is null.</exception>
         public ImageHasher(IImageTransformer transformer)
         {
             Transformer = transformer ?? throw new ArgumentNullException(nameof(transformer));

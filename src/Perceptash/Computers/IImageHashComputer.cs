@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Perceptash.Transformers;
 
 namespace Perceptash.Computers
@@ -15,6 +16,10 @@ namespace Perceptash.Computers
         /// </summary>
         /// <param name="stream">Stream to the image.</param>
         /// <param name="transformer">Implementation of image conversion methods.</param>
+        /// <exception cref="ArgumentNullException">
+        ///     The <paramref name="stream"/> parameter is null.
+        ///     The <paramref name="transformer"/> parameter is null.
+        /// </exception>
         THash Compute(Stream stream, IImageTransformer transformer);
     }
 }

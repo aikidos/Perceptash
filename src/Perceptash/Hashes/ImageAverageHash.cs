@@ -11,7 +11,7 @@
         public ulong InternalValue { get; }
 
         /// <summary>
-        /// Constructor of <see cref="ImageAverageHash"/>.
+        /// Initializes a new <see cref="ImageAverageHash"/>.
         /// </summary>
         /// <param name="value">Hash value.</param>
         public ImageAverageHash(ulong value)

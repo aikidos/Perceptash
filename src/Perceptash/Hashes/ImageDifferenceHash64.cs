@@ -11,7 +11,7 @@
         public ulong InternalValue { get; }
 
         /// <summary>
-        /// Constructor of <see cref="ImageDifferenceHash64"/>.
+        /// Initializes a new <see cref="ImageDifferenceHash64"/>.
         /// </summary>
         /// <param name="value">Hash value.</param>
         public ImageDifferenceHash64(ulong value)

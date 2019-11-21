@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Perceptash.Computers;
 using Perceptash.Transformers;
 
@@ -20,6 +21,10 @@ namespace Perceptash
         /// <typeparam name="THash">Type of hash value.</typeparam>
         /// <param name="stream">Stream to the image.</param>
         /// <param name="computer">Implementation of hash calculation algorithm.</param>
+        /// <exception cref="ArgumentNullException">
+        ///     The <paramref name="stream"/> parameter is null.
+        ///     The <paramref name="computer"/> parameter is null.
+        /// </exception>
         /// <example>
         /// <code>
         ///     var hasher = new ImageHasher(transformer);

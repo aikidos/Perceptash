@@ -10,9 +10,11 @@ namespace Perceptash
         private readonly ulong[] _internalValues;
 
         /// <summary>
-        /// Constructor of <see cref="ImageDifferenceHash256"/>.
+        /// Initializes a new <see cref="ImageDifferenceHash256"/>.
         /// </summary>
         /// <param name="values">Hash values.</param>
+        /// <exception cref="ArgumentNullException">The <paramref name="values"/> parameter is null.</exception>
+        /// <exception cref="ArgumentException">The length of the <paramref name="values"/> is not four.</exception>
         public ImageDifferenceHash256(ReadOnlySpan<ulong> values)
         {
             if (values == null) throw new ArgumentNullException(nameof(values));

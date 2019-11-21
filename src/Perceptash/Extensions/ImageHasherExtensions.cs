@@ -16,6 +16,13 @@ namespace Perceptash
         /// <param name="hasher">Implementation of <see cref="IImageHasher"/>.</param>
         /// <param name="filePath">Path to an image to be hashed.</param>
         /// <param name="computer">Implementation of hash calculation algorithm.</param>
+        /// <exception cref="ArgumentNullException">
+        ///     The <paramref name="hasher"/> parameter is null.
+        ///     The <paramref name="computer"/> parameter is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        ///     The <paramref name="filePath"/> parameter is null, empty, or consists only of white-space characters.
+        /// </exception>
         /// <example>
         /// <code>
         ///     var hasher = new ImageHasher(transformer);
