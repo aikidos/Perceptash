@@ -5,10 +5,10 @@ Perceptash
 
 Library offering several different perceptual hashing algorithms for detecting similar or duplicate images.  
 
-*At the moment, only .NET Core 3.0 and higher is supported.*
-
 Example
 ---
+
+On platforms supporting netstandard 2.1+
 
 ```csharp
 // Create transformer instance using the package `Perceptash.Transformers.ImageSharp`.
