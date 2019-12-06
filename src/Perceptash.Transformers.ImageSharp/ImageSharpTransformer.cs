@@ -15,9 +15,12 @@ namespace Perceptash.Transformers
         /// <inheritdoc />
         public byte[] ConvertToGreyscaleAndResize(Stream stream, int width, int height)
         {
-            if (stream == null) throw new ArgumentNullException(nameof(stream));
-            if (width <= 0) throw new ArgumentOutOfRangeException(nameof(width));
-            if (height <= 0) throw new ArgumentOutOfRangeException(nameof(height));
+            if (stream == null)
+                throw new ArgumentNullException(nameof(stream));
+            if (width <= 0) 
+                throw new ArgumentOutOfRangeException(nameof(width));
+            if (height <= 0)
+                throw new ArgumentOutOfRangeException(nameof(height));
 
             using var image = Image.Load<Gray8>(stream);
 

@@ -5,7 +5,7 @@ using Perceptash.Transformers;
 namespace Perceptash.Computers
 {
     /// <summary>
-    /// Implementation of 256-bit hash calculation method using difference hash.
+    /// Implementation of the 256-bit hash calculation method using difference hash.
     /// See http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html
     /// </summary>
     public sealed class ImageDifferenceHash256Computer : IImageHashComputer<ImageDifferenceHash256>
@@ -13,8 +13,10 @@ namespace Perceptash.Computers
         /// <inheritdoc />
         public ImageDifferenceHash256 Compute(Stream stream, IImageTransformer transformer)
         {
-            if (stream == null) throw new ArgumentNullException(nameof(stream));
-            if (transformer == null) throw new ArgumentNullException(nameof(transformer));
+            if (stream == null) 
+                throw new ArgumentNullException(nameof(stream));
+            if (transformer == null) 
+                throw new ArgumentNullException(nameof(transformer));
 
             byte[] pixels = transformer.ConvertToGreyscaleAndResize(stream, 17, 16);
 

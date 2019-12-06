@@ -6,7 +6,7 @@
     public readonly struct ImageAverageHash : IImageHashComparable<ImageAverageHash>
     {
         /// <summary>
-        /// Hash value.
+        /// Gets the hash value.
         /// </summary>
         public ulong InternalValue { get; }
 

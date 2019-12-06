@@ -14,7 +14,9 @@ namespace Perceptash.Transformers
         /// <param name="stream">Stream to the image.</param>
         /// <param name="width">New image width.</param>
         /// <param name="height">New image height.</param>
-        /// <exception cref="ArgumentNullException">The <paramref name="stream"/> parameter is null.</exception>
+        /// <exception cref="ArgumentNullException">
+        ///     The <paramref name="stream"/> parameter is null.
+        /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     The <paramref name="width"/> parameter is less than or equal to zero.
         ///     The <paramref name="height"/> parameter is less than or equal to zero.

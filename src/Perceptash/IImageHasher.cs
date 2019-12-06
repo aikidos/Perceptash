@@ -11,7 +11,7 @@ namespace Perceptash
     public interface IImageHasher
     {
         /// <summary>
-        /// Implementation of image conversion methods.
+        /// Gets the implementation of the image conversion methods.
         /// </summary>
         IImageTransformer Transformer { get; }
 
@@ -20,7 +20,7 @@ namespace Perceptash
         /// </summary>
         /// <typeparam name="THash">Type of hash value.</typeparam>
         /// <param name="stream">Stream to the image.</param>
-        /// <param name="computer">Implementation of hash calculation algorithm.</param>
+        /// <param name="computer">Implementation of the hash calculation algorithm.</param>
         /// <exception cref="ArgumentNullException">
         ///     The <paramref name="stream"/> parameter is null.
         ///     The <paramref name="computer"/> parameter is null.

@@ -23,7 +23,7 @@
         </member>
         <member name="T:Perceptash.Computers.ImageAverageHashComputer">
             <summary>
-            Implementation of hash calculation method using average algorithm.
+            Implementation of the hash calculation method using average algorithm.
             </summary>
         </member>
         <member name="M:Perceptash.Computers.ImageAverageHashComputer.Compute(System.IO.Stream,Perceptash.Transformers.IImageTransformer)">
@@ -31,7 +31,7 @@
         </member>
         <member name="T:Perceptash.Computers.ImageDifferenceHash256Computer">
             <summary>
-            Implementation of 256-bit hash calculation method using difference hash.
+            Implementation of the 256-bit hash calculation method using difference hash.
             See http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html
             </summary>
         </member>
@@ -40,7 +40,7 @@
         </member>
         <member name="T:Perceptash.Computers.ImageDifferenceHash64Computer">
             <summary>
-            Implementation of 64-bit hash calculation method using difference hash.
+            Implementation of the 64-bit hash calculation method using difference hash.
             See http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html
             </summary>
         </member>
@@ -57,9 +57,9 @@
             Returns hash of the image.
             </summary>
             <typeparam name="THash">Type of hash value.</typeparam>
-            <param name="hasher">Implementation of <see cref="T:Perceptash.IImageHasher"/>.</param>
+            <param name="hasher">Implementation of the <see cref="T:Perceptash.IImageHasher"/>.</param>
             <param name="filePath">Path to an image to be hashed.</param>
-            <param name="computer">Implementation of hash calculation algorithm.</param>
+            <param name="computer">Implementation of the hash calculation algorithm.</param>
             <exception cref="T:System.ArgumentNullException">
                 The <paramref name="hasher"/> parameter is null.
                 The <paramref name="computer"/> parameter is null.
@@ -109,7 +109,7 @@
         </member>
         <member name="P:Perceptash.ImageAverageHash.InternalValue">
             <summary>
-            Hash value.
+            Gets the hash value.
             </summary>
         </member>
         <member name="M:Perceptash.ImageAverageHash.#ctor(System.UInt64)">
@@ -131,8 +131,12 @@
             Initializes a new <see cref="T:Perceptash.ImageDifferenceHash256"/>.
             </summary>
             <param name="values">Hash values.</param>
-            <exception cref="T:System.ArgumentNullException">The <paramref name="values"/> parameter is null.</exception>
-            <exception cref="T:System.ArgumentException">The length of the <paramref name="values"/> is not four.</exception>
+            <exception cref="T:System.ArgumentNullException">
+                The <paramref name="values"/> parameter is null.
+            </exception>
+            <exception cref="T:System.ArgumentException">
+                The length of the <paramref name="values"/> is not four.
+            </exception>
         </member>
         <member name="M:Perceptash.ImageDifferenceHash256.GetInternalValuesSpan">
             <summary>
@@ -149,7 +153,7 @@
         </member>
         <member name="P:Perceptash.ImageDifferenceHash64.InternalValue">
             <summary>
-            Hash value.
+            Gets the hash value.
             </summary>
         </member>
         <member name="M:Perceptash.ImageDifferenceHash64.#ctor(System.UInt64)">
@@ -168,7 +172,7 @@
         </member>
         <member name="P:Perceptash.IImageHasher.Transformer">
             <summary>
-            Implementation of image conversion methods.
+            Gets the implementation of the image conversion methods.
             </summary>
         </member>
         <member name="M:Perceptash.IImageHasher.Calculate``1(System.IO.Stream,Perceptash.Computers.IImageHashComputer{``0})">
@@ -177,7 +181,7 @@
             </summary>
             <typeparam name="THash">Type of hash value.</typeparam>
             <param name="stream">Stream to the image.</param>
-            <param name="computer">Implementation of hash calculation algorithm.</param>
+            <param name="computer">Implementation of the hash calculation algorithm.</param>
             <exception cref="T:System.ArgumentNullException">
                 The <paramref name="stream"/> parameter is null.
                 The <paramref name="computer"/> parameter is null.
@@ -204,8 +208,10 @@
             <summary>
             Initializes a new <see cref="T:Perceptash.ImageHasher"/>.
             </summary>
-            <param name="transformer">Implementation of hash calculation algorithm.</param>
-            <exception cref="T:System.ArgumentNullException">The <paramref name="transformer"/> parameter is null.</exception>
+            <param name="transformer">Implementation of the image conversion methods.</param>
+            <exception cref="T:System.ArgumentNullException">
+                The <paramref name="transformer"/> parameter is null.
+            </exception>
         </member>
         <member name="M:Perceptash.ImageHasher.Calculate``1(System.IO.Stream,Perceptash.Computers.IImageHashComputer{``0})">
             <inheritdoc />
@@ -217,19 +223,19 @@
         </member>
         <member name="P:Perceptash.KnownImageHashes.Difference64">
             <summary>
-            Implementation of 64-bit hash calculation method using difference hash.
+            Implementation of the 64-bit hash calculation method using difference hash.
             See http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html
             </summary>
         </member>
         <member name="P:Perceptash.KnownImageHashes.Difference256">
             <summary>
-            Implementation of 256-bit hash calculation method using difference hash.
+            Implementation of the 256-bit hash calculation method using difference hash.
             See http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html
             </summary>
         </member>
         <member name="P:Perceptash.KnownImageHashes.Average">
             <summary>
-            Implementation of hash calculation method using average algorithm.
+            Implementation of the hash calculation method using average algorithm.
             </summary>
         </member>
         <member name="T:Perceptash.Transformers.IImageTransformer">
@@ -244,7 +250,9 @@
             <param name="stream">Stream to the image.</param>
             <param name="width">New image width.</param>
             <param name="height">New image height.</param>
-            <exception cref="T:System.ArgumentNullException">The <paramref name="stream"/> parameter is null.</exception>
+            <exception cref="T:System.ArgumentNullException">
+                The <paramref name="stream"/> parameter is null.
+            </exception>
             <exception cref="T:System.ArgumentOutOfRangeException">
                 The <paramref name="width"/> parameter is less than or equal to zero.
                 The <paramref name="height"/> parameter is less than or equal to zero.

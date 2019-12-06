@@ -13,9 +13,9 @@ namespace Perceptash
         /// Returns hash of the image.
         /// </summary>
         /// <typeparam name="THash">Type of hash value.</typeparam>
-        /// <param name="hasher">Implementation of <see cref="IImageHasher"/>.</param>
+        /// <param name="hasher">Implementation of the <see cref="IImageHasher"/>.</param>
         /// <param name="filePath">Path to an image to be hashed.</param>
-        /// <param name="computer">Implementation of hash calculation algorithm.</param>
+        /// <param name="computer">Implementation of the hash calculation algorithm.</param>
         /// <exception cref="ArgumentNullException">
         ///     The <paramref name="hasher"/> parameter is null.
         ///     The <paramref name="computer"/> parameter is null.
@@ -33,8 +33,10 @@ namespace Perceptash
         public static THash Calculate<THash>(this IImageHasher hasher, string filePath, IImageHashComputer<THash> computer)
             where THash : struct, IImageHashComparable<THash>
         {
-            if (hasher == null) throw new ArgumentNullException(nameof(hasher));
-            if (computer == null) throw new ArgumentNullException(nameof(computer));
+            if (hasher == null) 
+                throw new ArgumentNullException(nameof(hasher));
+            if (computer == null) 
+                throw new ArgumentNullException(nameof(computer));
             if (string.IsNullOrWhiteSpace(filePath))
                 throw new ArgumentException("Value cannot be null or whitespace.", nameof(filePath));
 

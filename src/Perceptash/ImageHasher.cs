@@ -16,8 +16,10 @@ namespace Perceptash
         /// <summary>
         /// Initializes a new <see cref="ImageHasher"/>.
         /// </summary>
-        /// <param name="transformer">Implementation of hash calculation algorithm.</param>
-        /// <exception cref="ArgumentNullException">The <paramref name="transformer"/> parameter is null.</exception>
+        /// <param name="transformer">Implementation of the image conversion methods.</param>
+        /// <exception cref="ArgumentNullException">
+        ///     The <paramref name="transformer"/> parameter is null.
+        /// </exception>
         public ImageHasher(IImageTransformer transformer)
         {
             Transformer = transformer ?? throw new ArgumentNullException(nameof(transformer));
@@ -27,8 +29,10 @@ namespace Perceptash
         public THash Calculate<THash>(Stream stream, IImageHashComputer<THash> computer)
             where THash : struct, IImageHashComparable<THash>
         {
-            if (stream == null) throw new ArgumentNullException(nameof(stream));
-            if (computer == null) throw new ArgumentNullException(nameof(computer));
+            if (stream == null)
+                throw new ArgumentNullException(nameof(stream));
+            if (computer == null) 
+                throw new ArgumentNullException(nameof(computer));
 
             return computer.Compute(stream, Transformer);
         }

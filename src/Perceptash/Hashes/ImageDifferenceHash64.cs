@@ -6,7 +6,7 @@
     public readonly struct ImageDifferenceHash64 : IImageHashComparable<ImageDifferenceHash64>
     {
         /// <summary>
-        /// Hash value.
+        /// Gets the hash value.
         /// </summary>
         public ulong InternalValue { get; }
 
