@@ -55,5 +55,5 @@ Image for testing: 3000x1971 (5 mb).
 
 Links to the tested libraries:
 
-* [DupImageLib](https://github.com/Quickshot/DupImageLib)
-* [Shipwreck.Phash](https://github.com/pgrho/phash)
+* [DupImageLib 1.1.3](https://github.com/Quickshot/DupImageLib)
+* [Shipwreck.Phash 0.5.0](https://github.com/pgrho/phash)
