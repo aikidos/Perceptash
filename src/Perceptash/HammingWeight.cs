@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 
 namespace Perceptash
 {
@@ -12,11 +13,13 @@ namespace Perceptash
         private const ulong M4 = 0x0f0f0f0f0f0f0f0f;
         private const ulong H01 = 0x0101010101010101;
 
+        [Pure]
         public static float CalculateSimilarity(ulong hash1, ulong hash2)
         {
             return 1f - Calculate(hash1 ^ hash2) / 64f;
         }
 
+        [Pure]
         public static float CalculateSimilarity(ReadOnlySpan<ulong> hash1, ReadOnlySpan<ulong> hash2)
         {
             if (hash1.Length != hash2.Length)
@@ -41,6 +44,7 @@ namespace Perceptash
             return 1.0f - hash / (hashSize * 64.0f);
         }
 
+        [Pure]
         private static ulong Calculate(ulong hash)
         {
             hash -= (hash >> 1) & M1;

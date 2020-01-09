@@ -1,4 +1,6 @@
-﻿namespace Perceptash
+﻿using System.Diagnostics.Contracts;
+
+namespace Perceptash
 {
     /// <summary>
     /// Interface used for implementation of hash comparisons.
@@ -21,6 +23,7 @@
         ///     float similarity = hash1.Similarity(hash2); // 0.46875
         /// </code>
         /// </example>
+        [Pure]
         float Similarity(THash otherHash);
     }
 }
