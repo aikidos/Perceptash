@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 
 namespace Perceptash
 {
@@ -32,6 +33,7 @@ namespace Perceptash
         /// <summary>
         /// Returns hash as a span of values.
         /// </summary>
+        [Pure]
         public ReadOnlySpan<ulong> GetInternalValuesSpan()
         {
             return _internalValues.AsSpan();
