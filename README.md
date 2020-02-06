@@ -57,3 +57,8 @@ Links to the tested libraries:
 
 * [DupImageLib 1.1.3](https://github.com/Quickshot/DupImageLib)
 * [Shipwreck.Phash 0.5.0](https://github.com/pgrho/phash)
+
+LICENSE
+===
+
+[MIT](LICENSE)
