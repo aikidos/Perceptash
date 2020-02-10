@@ -25,18 +25,18 @@ namespace Perceptash
             if (hash1.Length != hash2.Length)
                 throw new ArgumentException("The length of the arrays does not match.", nameof(hash1));
 
-            int hashSize = hash1.Length;
+            var hashSize = hash1.Length;
 
-            ulong hash = 0;
+            var hash = 0UL;
 
             var diff = new ulong[hashSize];
 
-            for (int i = 0; i < hashSize; i++)
+            for (var i = 0; i < hashSize; i++)
             {
                 diff[i] = hash1[i] ^ hash2[i];
             }
 
-            for (int i = 0; i < hashSize; i++)
+            for (var i = 0; i < hashSize; i++)
             {
                 hash += Calculate(diff[i]);
             }

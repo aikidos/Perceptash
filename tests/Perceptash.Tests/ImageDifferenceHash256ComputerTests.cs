@@ -20,9 +20,9 @@ namespace Perceptash.Tests
                 .Returns(() => Enumerable.Range(1, 272).Reverse().Select(value => (byte) value).ToArray());
 
             // Act
-            ImageDifferenceHash256 hash = computer.Compute(Stream.Null, transformer.Object);
+            var hash = computer.Compute(Stream.Null, transformer.Object);
             
-            ulong[] values = hash
+            var values = hash
                 .GetInternalValuesSpan()
                 .ToArray();
 

@@ -18,14 +18,14 @@ namespace Perceptash.Computers
             if (transformer == null) 
                 throw new ArgumentNullException(nameof(transformer));
 
-            byte[] pixels = transformer.ConvertToGreyscaleAndResize(stream, 8, 8);
+            var pixels = transformer.ConvertToGreyscaleAndResize(stream, 8, 8);
 
-            int total = pixels.Sum(pixel => pixel);
-            int average = total / 64;
+            var total = pixels.Sum(pixel => pixel);
+            var average = total / 64;
 
-            ulong hash = 0UL;
+            var hash = 0UL;
             
-            for (int i = 0; i < 64; i++)
+            for (var i = 0; i < 64; i++)
             {
                 if (pixels[i] > average)
                 {

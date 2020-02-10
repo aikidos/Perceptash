@@ -33,7 +33,7 @@ namespace Perceptash.Transformers
 
             var pixels = new byte[span.Length];
 
-            for (int i = 0; i < span.Length; i++)
+            for (var i = 0; i < span.Length; i++)
             {
                 pixels[i] = span[i].PackedValue;
             }

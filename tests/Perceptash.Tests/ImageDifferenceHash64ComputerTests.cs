@@ -20,7 +20,7 @@ namespace Perceptash.Tests
                 .Returns(() => Enumerable.Range(1, 72).Reverse().Select(value => (byte) value).ToArray());
 
             // Act
-            ImageDifferenceHash64 hash = computer.Compute(Stream.Null, transformer.Object);
+            var hash = computer.Compute(Stream.Null, transformer.Object);
 
             // Assert
             Assert.Equal(18446744073709551615UL, hash.InternalValue);

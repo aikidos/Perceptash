@@ -18,18 +18,18 @@ namespace Perceptash.Computers
             if (transformer == null) 
                 throw new ArgumentNullException(nameof(transformer));
 
-            byte[] pixels = transformer.ConvertToGreyscaleAndResize(stream, 17, 16);
+            var pixels = transformer.ConvertToGreyscaleAndResize(stream, 17, 16);
 
-            ulong[] hash = new ulong[4];
+            var hash = new ulong[4];
 
-            int pos = 0;
-            int part = 0;
+            var pos = 0;
+            var part = 0;
             
-            for (int y = 0; y < 16; y++)
+            for (var y = 0; y < 16; y++)
             {
-                int row = y * 17;
+                var row = y * 17;
                 
-                for (int x = 0; x < 16; x++)
+                for (var x = 0; x < 16; x++)
                 {
                     if (pixels[row + x] > pixels[row + x + 1])
                     {

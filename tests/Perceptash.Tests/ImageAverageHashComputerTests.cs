@@ -20,7 +20,7 @@ namespace Perceptash.Tests
                 .Returns(() => Enumerable.Range(1, 64).Select(value => (byte) value).ToArray());
 
             // Act
-            ImageAverageHash hash = computer.Compute(Stream.Null, transformer.Object);
+            var hash = computer.Compute(Stream.Null, transformer.Object);
 
             // Assert
             Assert.Equal(18446744069414584320UL, hash.InternalValue);

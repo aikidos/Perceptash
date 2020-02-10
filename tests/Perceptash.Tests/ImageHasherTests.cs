@@ -19,7 +19,7 @@ namespace Perceptash.Tests
             IImageHasher hasher = new ImageHasher(transformer.Object);
 
             // Act
-            ImageDifferenceHash64 hash = hasher.Calculate(Stream.Null, KnownImageHashes.Difference64);
+            var hash = hasher.Calculate(Stream.Null, KnownImageHashes.Difference64);
 
             // Assert
             Assert.Equal(18446744073709551615UL, hash.InternalValue);
@@ -34,8 +34,8 @@ namespace Perceptash.Tests
             var hash3 = new ImageDifferenceHash64(18446744073709550504UL);
 
             // Act
-            float result1 = hash1.Similarity(hash2);
-            float result2 = hash1.Similarity(hash3);
+            var result1 = hash1.Similarity(hash2);
+            var result2 = hash1.Similarity(hash3);
 
             // Assert
             Assert.Equal(1f, result1);
