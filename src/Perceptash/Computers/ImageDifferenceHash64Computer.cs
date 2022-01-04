@@ -10,6 +10,9 @@ namespace Perceptash.Computers;
 /// </summary>
 public sealed class ImageDifferenceHash64Computer : IImageHashComputer<ImageDifferenceHash64>
 {
+    private const int ImageWidth = 9;
+    private const int ImageHeight = 8;
+    
     /// <inheritdoc />
     public ImageDifferenceHash64 Compute(Stream stream, IImageTransformer transformer)
     {
@@ -18,20 +21,20 @@ public sealed class ImageDifferenceHash64Computer : IImageHashComputer<ImageDiff
         if (transformer == null) 
             throw new ArgumentNullException(nameof(transformer));
 
-        var pixels = transformer.ConvertToGreyscaleAndResize(stream, 9, 8);
+        var pixels = transformer.ConvertToGreyscaleAndResize(stream, ImageWidth, ImageHeight);
 
         var hash = 0UL;
         var pos = 0;
 
-        for (var y = 0; y < 8; y++)
+        for (var y = 0; y < ImageHeight; y++)
         {
-            var row = y * 9;
+            var row = y * ImageWidth;
 
-            for (var x = 0; x < 8; x++)
+            for (var x = 0; x < ImageHeight; x++)
             {
                 if (pixels[row + x] > pixels[row + x + 1])
                 {
-                    hash |= (1UL << pos);
+                    hash |= 1UL << pos;
                 }
 
                 pos++;
