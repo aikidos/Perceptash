@@ -14,7 +14,7 @@ public sealed class ImageMagickTransformer : IImageTransformer
     {
         if (stream == null)
             throw new ArgumentNullException(nameof(stream));
-        if (width <= 0) 
+        if (width <= 0)
             throw new ArgumentOutOfRangeException(nameof(width));
         if (height <= 0)
             throw new ArgumentOutOfRangeException(nameof(height));
@@ -24,12 +24,12 @@ public sealed class ImageMagickTransformer : IImageTransformer
         var settings = new QuantizeSettings
         {
             ColorSpace = ColorSpace.Gray,
-            Colors = 256
+            Colors = 256,
         };
 
         var size = new MagickGeometry(width, height)
         {
-            IgnoreAspectRatio = true
+            IgnoreAspectRatio = true,
         };
 
         image.Quantize(settings);
@@ -38,6 +38,6 @@ public sealed class ImageMagickTransformer : IImageTransformer
 
         using var pixels = image.GetPixels();
 
-        return pixels.GetValues();
+        return pixels.GetValues()!;
     }
 }
