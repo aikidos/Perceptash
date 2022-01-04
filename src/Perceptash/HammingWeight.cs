@@ -29,16 +29,9 @@ internal static class HammingWeight
 
         var hash = 0UL;
 
-        var diff = new ulong[hashSize];
-
         for (var i = 0; i < hashSize; i++)
         {
-            diff[i] = hash1[i] ^ hash2[i];
-        }
-
-        for (var i = 0; i < hashSize; i++)
-        {
-            hash += Calculate(diff[i]);
+            hash += Calculate(hash1[i] ^ hash2[i]);
         }
 
         return 1.0f - hash / (hashSize * 64.0f);
