@@ -3,38 +3,37 @@ using System.IO;
 using Perceptash.Computers;
 using Perceptash.Transformers;
 
-namespace Perceptash
+namespace Perceptash;
+
+/// <summary>
+/// Implementation of the hash calculation methods.
+/// </summary>
+public sealed class ImageHasher : IImageHasher
 {
+    /// <inheritdoc />
+    public IImageTransformer Transformer { get; }
+
     /// <summary>
-    /// Implementation of the hash calculation methods.
+    /// Initializes a new <see cref="ImageHasher"/>.
     /// </summary>
-    public sealed class ImageHasher : IImageHasher
+    /// <param name="transformer">Implementation of the image conversion methods.</param>
+    /// <exception cref="ArgumentNullException">
+    ///     The <paramref name="transformer"/> parameter is null.
+    /// </exception>
+    public ImageHasher(IImageTransformer transformer)
     {
-        /// <inheritdoc />
-        public IImageTransformer Transformer { get; }
+        Transformer = transformer ?? throw new ArgumentNullException(nameof(transformer));
+    }
 
-        /// <summary>
-        /// Initializes a new <see cref="ImageHasher"/>.
-        /// </summary>
-        /// <param name="transformer">Implementation of the image conversion methods.</param>
-        /// <exception cref="ArgumentNullException">
-        ///     The <paramref name="transformer"/> parameter is null.
-        /// </exception>
-        public ImageHasher(IImageTransformer transformer)
-        {
-            Transformer = transformer ?? throw new ArgumentNullException(nameof(transformer));
-        }
+    /// <inheritdoc />
+    public THash Calculate<THash>(Stream stream, IImageHashComputer<THash> computer)
+        where THash : struct, IImageHashComparable<THash>
+    {
+        if (stream == null)
+            throw new ArgumentNullException(nameof(stream));
+        if (computer == null) 
+            throw new ArgumentNullException(nameof(computer));
 
-        /// <inheritdoc />
-        public THash Calculate<THash>(Stream stream, IImageHashComputer<THash> computer)
-            where THash : struct, IImageHashComparable<THash>
-        {
-            if (stream == null)
-                throw new ArgumentNullException(nameof(stream));
-            if (computer == null) 
-                throw new ArgumentNullException(nameof(computer));
-
-            return computer.Compute(stream, Transformer);
-        }
+        return computer.Compute(stream, Transformer);
     }
 }

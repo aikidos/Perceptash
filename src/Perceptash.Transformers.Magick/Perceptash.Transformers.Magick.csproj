@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <RootNamespace>Perceptash.Transformers</RootNamespace>
   </PropertyGroup>
@@ -19,7 +20,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Magick.NET-Q8-AnyCPU" Version="7.14.5" />
+    <PackageReference Include="Magick.NET-Q8-AnyCPU" Version="8.5.0" />
   </ItemGroup>
 
   <ItemGroup>
