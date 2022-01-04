@@ -16,8 +16,8 @@ var transformer = new ImageSharpTransformer();
 
 var hasher = new ImageHasher(transformer);
 
-var hash1 = hasher.Calculate("cat.jpg", KnownImageHashes.Difference64);
-var hash2 = hasher.Calculate("cat_rotated_90_degrees.jpg", KnownImageHashes.Difference64);
+var hash1 = hasher.Calculate("cat.jpg", HashComputers.Difference64);
+var hash2 = hasher.Calculate("cat_rotated_90_degrees.jpg", HashComputers.Difference64);
 
 float similarity = hash1.Similarity(hash2); // 0.46875
 ```
@@ -36,27 +36,15 @@ Benchmarks
 
 Image for testing: 3000x1971 (5 mb).
 
-|               Categories |                         Method |       Mean |   Allocated |
-|------------------------- |------------------------------- |-----------:|------------:|
-| Perceptash (ImageSharp)  | KnownImageHashes.Difference64  |   391.4 ms |    48.25 KB |
-| Perceptash (ImageSharp)  | KnownImageHashes.Difference256 |   395.7 ms |     40.8 KB |
-| Perceptash (ImageSharp)  | KnownImageHashes.Average       |   388.8 ms |    49.44 KB |
-|                          |                                |            |             |
-| Perceptash (Magick.NET)  | KnownImageHashes.Difference64  | 1,872.8 ms |    13.13 KB |
-| Perceptash (Magick.NET)  | KnownImageHashes.Difference256 | 1,876.0 ms |     13.5 KB |
-| Perceptash (Magick.NET)  | KnownImageHashes.Average       | 1,870.6 ms |    14.41 KB |
-|                          |                                |            |             |
-| DupImageLib (Magick.NET) | CalculateDifferenceHash64      | 1,879.3 ms |    34.17 KB |
-| DupImageLib (Magick.NET) | CalculateDifferenceHash256     | 1,886.6 ms |    35.02 KB |
-| DupImageLib (Magick.NET) | CalculateAverageHash64         | 1,872.7 ms |    34.33 KB |
-|                          |                                |            |             |
-| Shipwreck.Phash          | ComputeDctHash                 |   688.4 ms | 56371.38 KB |
-| Shipwreck.Phash          | ComputeDigest                  |   697.7 ms |  58466.2 KB |
-
-Links to the tested libraries:
-
-* [DupImageLib 1.1.3](https://github.com/Quickshot/DupImageLib)
-* [Shipwreck.Phash 0.5.0](https://github.com/pgrho/phash)
+|              Categories |                      Method |       Mean | Allocated |
+|------------------------ |---------------------------- |-----------:|----------:|
+| Perceptash (ImageSharp) | HashComputers.Difference64  |   282.0 ms |     51 KB |
+| Perceptash (ImageSharp) | HashComputers.Difference256 |   286.4 ms |     43 KB |
+| Perceptash (ImageSharp) | HashComputers.Average       |   284.2 ms |     53 KB |
+|                         |                             |            |           |
+| Perceptash (Magick.NET) | HashComputers.Difference64  | 1,616.1 ms |     13 KB |
+| Perceptash (Magick.NET) | HashComputers.Difference256 | 1,622.1 ms |     14 KB |
+| Perceptash (Magick.NET) | HashComputers.Average       | 1,625.0 ms |     13 KB |
 
 LICENSE
 ===
