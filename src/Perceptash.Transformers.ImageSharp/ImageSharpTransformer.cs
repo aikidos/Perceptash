@@ -17,19 +17,22 @@ public sealed class ImageSharpTransformer : IImageTransformer
     {
         if (stream == null)
             throw new ArgumentNullException(nameof(stream));
-        if (width <= 0) 
+        if (width <= 0)
             throw new ArgumentOutOfRangeException(nameof(width));
         if (height <= 0)
             throw new ArgumentOutOfRangeException(nameof(height));
 
-        using var image = Image.Load<Gray8>(stream);
+        using var image = Image.Load<L8>(stream);
 
         image.Mutate(context =>
         {
             context.Resize(width, height);
         });
 
-        var span = image.GetPixelSpan();
+        if (!image.TryGetSinglePixelSpan(out var span))
+        {
+            throw new ArgumentException("Multi-megapixel images are not supported.", nameof(stream));
+        }
 
         var pixels = new byte[span.Length];
 
