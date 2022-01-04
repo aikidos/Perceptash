@@ -27,7 +27,7 @@ public static class ImageHasherExtensions
     /// <code>
     ///     var hasher = new ImageHasher(transformer);
     ///  
-    ///     var hash = hasher.Calculate("cat.jpg", KnownImageHashes.Difference64);
+    ///     var hash = hasher.Calculate("cat.jpg", HashComputers.Difference64);
     /// </code>
     /// </example>
     public static THash Calculate<THash>(this IImageHasher hasher, string filePath, IImageHashComputer<THash> computer)

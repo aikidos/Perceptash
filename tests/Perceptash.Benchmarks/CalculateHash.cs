@@ -36,44 +36,44 @@ public class CalculateHash
     }
 
     [BenchmarkCategory("Perceptash (ImageSharp)")]
-    [Benchmark(Description = "KnownImageHashes.Difference64")]
+    [Benchmark(Description = "HashComputers.Difference64")]
     public ImageDifferenceHash64 Perceptash_ImageSharp_Difference_64()
     {
-        return _perceptashImageSharp.Calculate(_imageStream, KnownImageHashes.Difference64);
+        return _perceptashImageSharp.Calculate(_imageStream, HashComputers.Difference64);
     }
 
     [BenchmarkCategory("Perceptash (ImageSharp)")]
-    [Benchmark(Description = "KnownImageHashes.Difference256")]
+    [Benchmark(Description = "HashComputers.Difference256")]
     public ImageDifferenceHash256 Perceptash_ImageSharp_Difference_256()
     {
-        return _perceptashImageSharp.Calculate(_imageStream, KnownImageHashes.Difference256);
+        return _perceptashImageSharp.Calculate(_imageStream, HashComputers.Difference256);
     }
 
     [BenchmarkCategory("Perceptash (ImageSharp)")]
-    [Benchmark(Description = "KnownImageHashes.Average")]
+    [Benchmark(Description = "HashComputers.Average")]
     public ImageAverageHash Perceptash_ImageSharp_Average()
     {
-        return _perceptashImageSharp.Calculate(_imageStream, KnownImageHashes.Average);
+        return _perceptashImageSharp.Calculate(_imageStream, HashComputers.Average);
     }
 
     [BenchmarkCategory("Perceptash (Magick.NET)")]
-    [Benchmark(Description = "KnownImageHashes.Difference64")]
+    [Benchmark(Description = "HashComputers.Difference64")]
     public ImageDifferenceHash64 Perceptash_Magick_Difference_64()
     {
-        return _perceptashMagick.Calculate(_imageStream, KnownImageHashes.Difference64);
+        return _perceptashMagick.Calculate(_imageStream, HashComputers.Difference64);
     }
 
     [BenchmarkCategory("Perceptash (Magick.NET)")]
-    [Benchmark(Description = "KnownImageHashes.Difference256")]
+    [Benchmark(Description = "HashComputers.Difference256")]
     public ImageDifferenceHash256 Perceptash_Magick_Difference_256()
     {
-        return _perceptashMagick.Calculate(_imageStream, KnownImageHashes.Difference256);
+        return _perceptashMagick.Calculate(_imageStream, HashComputers.Difference256);
     }
 
     [BenchmarkCategory("Perceptash (Magick.NET)")]
-    [Benchmark(Description = "KnownImageHashes.Average")]
+    [Benchmark(Description = "HashComputers.Average")]
     public ImageAverageHash Perceptash_Magick_Average()
     {
-        return _perceptashMagick.Calculate(_imageStream, KnownImageHashes.Average);
+        return _perceptashMagick.Calculate(_imageStream, HashComputers.Average);
     }
 }

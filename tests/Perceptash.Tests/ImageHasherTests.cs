@@ -19,7 +19,7 @@ public class ImageHasherTests
         IImageHasher hasher = new ImageHasher(transformer.Object);
 
         // Act
-        var hash = hasher.Calculate(Stream.Null, KnownImageHashes.Difference64);
+        var hash = hasher.Calculate(Stream.Null, HashComputers.Difference64);
 
         // Assert
         Assert.Equal(18446744073709551615UL, hash.InternalValue);

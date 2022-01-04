@@ -31,7 +31,7 @@ public interface IImageHasher
     ///  
     ///     using var stream = File.OpenRead("cat.jpg");
     ///  
-    ///     var hash = hasher.Calculate(stream, KnownImageHashes.Difference64);     
+    ///     var hash = hasher.Calculate(stream, HashComputers.Difference64);     
     /// </code>
     /// </example>
     THash Calculate<THash>(Stream stream, IImageHashComputer<THash> computer)

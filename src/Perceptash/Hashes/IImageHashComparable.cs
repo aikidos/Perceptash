@@ -17,8 +17,8 @@ public interface IImageHashComparable<THash>
     /// <code>
     ///     var hasher = new ImageHasher(transformer);
     ///  
-    ///     var hash1 = hasher.Calculate("cat.jpg", KnownImageHashes.Difference64);
-    ///     var hash2 = hasher.Calculate("cat_rotated_90_degrees.jpg", KnownImageHashes.Difference64);
+    ///     var hash1 = hasher.Calculate("cat.jpg", HashComputers.Difference64);
+    ///     var hash2 = hasher.Calculate("cat_rotated_90_degrees.jpg", HashComputers.Difference64);
     ///  
     ///     float similarity = hash1.Similarity(hash2); // 0.46875
     /// </code>

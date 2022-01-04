@@ -5,7 +5,7 @@ namespace Perceptash;
 /// <summary>
 /// Contains reusable static instances of known calculation hash algorithms.
 /// </summary>
-public static class KnownImageHashes
+public static class HashComputers
 {
     /// <summary>
     /// Implementation of the 64-bit hash calculation method using difference hash.
