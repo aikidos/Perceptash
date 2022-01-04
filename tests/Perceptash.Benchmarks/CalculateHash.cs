@@ -1,11 +1,7 @@
-﻿using System.Drawing;
-using System.IO;
+﻿using System.IO;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Configs;
-using DupImageLib;
 using Perceptash.Transformers;
-using Shipwreck.Phash;
-using Shipwreck.Phash.Bitmaps;
 using ImageMagickTransformer = Perceptash.Transformers.ImageMagickTransformer;
 
 namespace Perceptash.Benchmarks
@@ -17,7 +13,6 @@ namespace Perceptash.Benchmarks
     {
         private readonly IImageHasher _perceptashImageSharp = new ImageHasher(new ImageSharpTransformer());
         private readonly IImageHasher _perceptashMagick = new ImageHasher(new ImageMagickTransformer());
-        private readonly ImageHashes _dupImageLib = new ImageHashes();
 
         private byte[] _imageBytes;
         private MemoryStream _imageStream;
@@ -80,49 +75,6 @@ namespace Perceptash.Benchmarks
         public ImageAverageHash Perceptash_Magick_Average()
         {
             return _perceptashMagick.Calculate(_imageStream, KnownImageHashes.Average);
-        }
-
-        [BenchmarkCategory("DupImageLib (Magick.NET)")]
-        [Benchmark(Description = "CalculateDifferenceHash64")]
-        public ulong DupImageLib_Magick_Difference_64()
-        {
-            return _dupImageLib.CalculateDifferenceHash64(_imageStream);
-        }
-
-        [BenchmarkCategory("DupImageLib (Magick.NET)")]
-        [Benchmark(Description = "CalculateDifferenceHash256")]
-        public ulong[] DupImageLib_Magick_Difference_256()
-        {
-            return _dupImageLib.CalculateDifferenceHash256(_imageStream);
-        }
-
-        [BenchmarkCategory("DupImageLib (Magick.NET)")]
-        [Benchmark(Description = "CalculateAverageHash64")]
-        public ulong DupImageLib_Magick_Average_64()
-        {
-            return _dupImageLib.CalculateAverageHash64(_imageStream);
-        }
-
-        [BenchmarkCategory("Shipwreck.Phash")]
-        [Benchmark(Description = "ComputeDctHash")]
-        public ulong PHash_Dct()
-        {
-            using var image = Image.FromStream(_imageStream);
-
-            var luminanceImage = ((Bitmap) image).ToLuminanceImage();
-
-            return ImagePhash.ComputeDctHash(luminanceImage);
-        }
-
-        [BenchmarkCategory("Shipwreck.Phash")]
-        [Benchmark(Description = "ComputeDigest")]
-        public Digest PHash_Digest()
-        {
-            using var image = Image.FromStream(_imageStream);
-
-            var luminanceImage = ((Bitmap)image).ToLuminanceImage();
-
-            return ImagePhash.ComputeDigest(luminanceImage);
         }
     }
 }
