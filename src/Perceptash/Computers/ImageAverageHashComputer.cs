@@ -3,37 +3,36 @@ using System.IO;
 using System.Linq;
 using Perceptash.Transformers;
 
-namespace Perceptash.Computers
+namespace Perceptash.Computers;
+
+/// <summary>
+/// Implementation of the hash calculation method using average algorithm.
+/// </summary>
+public sealed class ImageAverageHashComputer : IImageHashComputer<ImageAverageHash>
 {
-    /// <summary>
-    /// Implementation of the hash calculation method using average algorithm.
-    /// </summary>
-    public sealed class ImageAverageHashComputer : IImageHashComputer<ImageAverageHash>
+    /// <inheritdoc />
+    public ImageAverageHash Compute(Stream stream, IImageTransformer transformer)
     {
-        /// <inheritdoc />
-        public ImageAverageHash Compute(Stream stream, IImageTransformer transformer)
-        {
-            if (stream == null) 
-                throw new ArgumentNullException(nameof(stream));
-            if (transformer == null) 
-                throw new ArgumentNullException(nameof(transformer));
+        if (stream == null) 
+            throw new ArgumentNullException(nameof(stream));
+        if (transformer == null) 
+            throw new ArgumentNullException(nameof(transformer));
 
-            var pixels = transformer.ConvertToGreyscaleAndResize(stream, 8, 8);
+        var pixels = transformer.ConvertToGreyscaleAndResize(stream, 8, 8);
 
-            var total = pixels.Sum(pixel => pixel);
-            var average = total / 64;
+        var total = pixels.Sum(pixel => pixel);
+        var average = total / 64;
 
-            var hash = 0UL;
+        var hash = 0UL;
             
-            for (var i = 0; i < 64; i++)
+        for (var i = 0; i < 64; i++)
+        {
+            if (pixels[i] > average)
             {
-                if (pixels[i] > average)
-                {
-                    hash |= (1UL << i);
-                }
+                hash |= (1UL << i);
             }
-
-            return new ImageAverageHash(hash);
         }
+
+        return new ImageAverageHash(hash);
     }
 }

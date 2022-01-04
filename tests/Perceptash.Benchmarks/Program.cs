@@ -1,12 +1,11 @@
 ﻿using BenchmarkDotNet.Running;
 
-namespace Perceptash.Benchmarks
+namespace Perceptash.Benchmarks;
+
+public class Program
 {
-    public class Program
+    public static void Main()
     {
-        public static void Main()
-        {
-            BenchmarkRunner.Run<CalculateHash>();
-        }
+        BenchmarkRunner.Run<CalculateHash>();
     }
 }
